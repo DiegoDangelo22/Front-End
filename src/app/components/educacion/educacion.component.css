@@ -1,0 +1,94 @@
+.edu {
+  display: flex;
+  background: pink;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background: #ee0979;
+  background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+  background: linear-gradient(to left, #ff6a00, #ee0979);
+  margin-bottom: 20px;
+}
+
+h1 {
+  float: left;
+  padding-left: 60px;
+}
+
+.newedu {
+  float: right;
+  height: fit-content;
+  margin-right: 60px;
+  font-size: 30px;
+  background: transparent;
+  border: transparent;
+}
+
+.lista {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.nomdes {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name_desc_container {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  max-width: 80%;
+  overflow-wrap: break-word;
+  margin: 10px 0 10px 50px;
+}
+
+.eduname {
+  padding: 0;
+  margin: 0px;
+}
+
+.eduname > h2 {
+  padding: 0;
+  margin: 0px;
+}
+
+.edudesc {
+  padding: 0 0 0 20px;
+  margin: 0px;
+}
+
+.delete_edit_container {
+  display: flex;
+  width: fit-content;
+  float: right;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+}
+
+button {
+  font-size: 30px;
+  background: transparent;
+  border: transparent;
+  color: #fff;
+}
+
+.lapiz {
+  width: 30px;
+  padding-right: 30px;
+}
+
+.tachito {
+  width: 30px;
+  padding: 0 23px 0 0;
+}

@@ -1,0 +1,46 @@
+.container {
+    background-image: url('../../../assets/public/5344385.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-family: UD Digi Kyokasho NP-R;
+    font-size: 20px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 200px;
+}
+
+.inputs {
+    width: 400px;
+    height: 400px;
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+input {
+    padding: 5px 0;
+}
+
+label {
+    padding: 20px 0;
+}
+
+.btn {
+    font-family: UD Digi Kyokasho NP-R;
+    font-size: 20px;
+}
+
+/*  */
+
