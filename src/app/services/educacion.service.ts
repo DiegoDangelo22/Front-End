@@ -7,7 +7,7 @@ import { Educacion } from '../model/educacion';
   providedIn: 'root'
 })
 export class EducacionService {
-  URL = 'http://localhost:8080/educacion/';
+  URL = 'https://back-end-production-f28f.up.railway.app/educacion/';
   constructor(private httpClient:HttpClient) { }
 
   public lista():Observable<Educacion[]>{

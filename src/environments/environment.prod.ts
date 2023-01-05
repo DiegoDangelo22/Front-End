@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  URL: 'https://heroku-backendmgb.herokuapp.com/'
+  URL: 'https://back-end-production-f28f.up.railway.app/'
 };
