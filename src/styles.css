@@ -1,4 +1,8 @@
 body, html {
     margin: 0;
     overflow-x: hidden;
+    background: #171a21;
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    background: linear-gradient(to right, #1CB5E0, #000046);
+    scrollbar-width: none;
 }

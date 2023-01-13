@@ -1,0 +1,139 @@
+.hys {
+  display: flex;
+  background: pink;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  background: #ee0979;
+  background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+  background: linear-gradient(to left, #ff6a00, #ee0979);
+  margin: 50px 0 70px 0;
+}
+
+h1 {
+  float: left;
+  padding-left: 60px;
+}
+
+.newhys {
+  float: right;
+  height: fit-content;
+  margin-right: 60px;
+  font-size: 30px;
+  background: transparent;
+  border: transparent;
+  color: #fff;
+}
+
+.row{
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 220px);
+  grid-template-rows: auto;
+  justify-content: center;
+}
+
+.container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-bottom: 25px;
+}
+
+.subtitle {
+  display: flex;
+  word-break: break-all;
+  color: #ffffff;
+  padding: 10px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.btn {
+  list-style: none;
+  background: transparent;
+  border: transparent;
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  padding: 10px 12px;
+}
+
+
+/* The Modal (background) */
+.modalhys {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  margin: auto;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  background-color: #fefefe;
+  padding: 10px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+  /* Add Animation */
+  @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+
+/* NUEVA EXPERIENCIA STYLES */
+.container2 {
+  background-image: url('../../../assets/public/5344385.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-family: UD Digi Kyokasho NP-R;
+  font-size: 20px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 200px;
+}
+
+.inputs {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+input {
+  padding: 5px 0;
+}
+
+label {
+  padding: 20px 0;
+}
+
+.btnooo {
+  font-family: UD Digi Kyokasho NP-R;
+  font-size: 20px;
+}

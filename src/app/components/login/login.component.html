@@ -1,29 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Web</title>
-    <style>
-       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-      @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap");
-      @import url("styles.css");
-    </style>
-  </head>
-  <body>
 <app-header></app-header>
-    <form class="form_container" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
-      <div class="form">
-      <div class="data">
-        <label for="nombreUsuario">Usuario</label>
-        <input type="email" id="nombreUsuario" name="nombreUsuario" class="credentials" placeholder="Ingrese su nombre de usuario" [(ngModel)]="nombreUsuario" name="nombreUsuario" required />
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" class="credentials" placeholder="Ingrese su contraseña" [(ngModel)]="password" name="password" required />
-      </div>
 
-      <button type="submit">Login</button>
+<body>
+  <section class="wrapper active">
+    <div class="form login">
+      <header>Login</header>
+      <form [formGroup]="formLogin" action="#" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+        <input formControlName="nombreUsuario" type="text" placeholder="Ingrese su nombre de usuario" [(ngModel)]="nombreUsuario" required />
+        
+        <input formControlName="password" type="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required />
+        
+        
+        <input type="submit" value="Login" />
+        <div class="login-errs">
+          <p>{{errMsj}}</p>
+        </div>
+        
+       </form>
     </div>
-    </form>
-  </body>
-  </html>
+    
+    
+    
+    
+    
+
+    <div class="form signup">
+      <header routerLink="/signup">Signup</header>
+      <form>
+        <input type="text" placeholder="Ingrese su nombre de usuario" required />
+        
+        <input type="password" placeholder="Ingrese su contraseña"  required />
+        
+        <div class="checkbox">
+          <input type="checkbox" id="signupCheck"/>
+          <label for="signupCheck">I accept all terms & conditions.</label>
+        </div>
+        <input type="submit" value="Signup" />
+        
+      </form>
+      
+    </div>
+  </section>
+</body>

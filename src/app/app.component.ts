@@ -1,5 +1,6 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterPreloader } from '@angular/router';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = "";
 
-  constructor(private router:Router) {  }
+  constructor(private router:Router) { }
 
 
   noti():any {
@@ -33,8 +34,18 @@ export class AppComponent {
       timer2 = setTimeout(() => {
         progress.classList.remove("active");
       }, 5300);
-    
-      
 
-}
+      closeIcon.addEventListener("click", () => {
+        toast.classList.remove("active");
+        
+        setTimeout(() => {
+          progress.classList.remove("active");
+        }, 300);
+
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      });
+    
+  }
+
 }

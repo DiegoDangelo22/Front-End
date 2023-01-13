@@ -5,59 +5,12 @@ body {
   background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
   background: linear-gradient(to right, #1CB5E0, #000046);
   line-height: 1.6;
+  overflow-y: hidden;
 }
 h1, h2 {
   margin: 0;
 }
-  .banner {
-    display: flex;
-    background-image: url('../../../assets/public/code_text_colorful_140555_3024x4032.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 200px;
-  }
-  .about_0 {
-    margin: 0 30px 0px 30px;
-    color: #fff;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .about_1 {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    height: max-content;
-    float: left;
-  }
-  .about_1 > .profile_pic {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    bottom: 50px;
-    margin: 0 auto 0 auto;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    background-image: url('../../../assets/public/index.jpg');
-    background-position: center top -7px;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .about_2 {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 70%;
-    height: max-content;
-    float: right;
-    padding: 10px 30px 0px 30px;
-  }
-  .name {
-    position: relative;
-    bottom: 40px;
-    margin: 0 auto 0 auto;
-    text-align: center;
-  }
+  
   .education_container {
     margin: 0 30px 0 30px;
     padding-bottom: 30px;
@@ -68,133 +21,6 @@ h1, h2 {
     box-sizing: border-box;
     width: 100%;
     height: max-content;
-  }
-  .skills_container {
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hard_skills {
-    width: max-content;
-    margin: 0 auto 0 auto;
-    color: #fff;
-  }
-  .soft_skills {
-    width: max-content;
-    margin: 0 auto 0 auto;
-    color: #fff;
-  }
-  .skill {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    margin: 0 10px 0 10px;
-    padding: 50px 0;
-    row-gap: 30px;
-    border-radius: 8px;
-  }
-  .circular_progress {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background: conic-gradient(#ffc02f 3.6deg, #fff 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .circular_progress::before {
-    content: "";
-    position: absolute;
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    background: #171a21;
-  }
-  .progress_value {
-    position: relative;
-    font-size: 40px;
-    font-weight: 600;
-    color: #ffc02f;
-  }
-  .text {
-    font-size: 30px;
-    font-weight: 500;
-    color: #ffc02f;
-  }
-  .circular_progress_2 {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background: conic-gradient(#ffc02f 3.6deg, #fff 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .circular_progress_2::before {
-    content: "";
-    position: absolute;
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    background: #171a21;
-  }
-  .progress_value_2 {
-    position: relative;
-    font-size: 40px;
-    font-weight: 600;
-    color: #ffc02f;
-  }
-  .circular_progress_3 {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background: conic-gradient(#ffc02f 3.6deg, #fff 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .circular_progress_3::before {
-    content: "";
-    position: absolute;
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    background: #171a21;
-  }
-  .progress_value_3 {
-    position: relative;
-    font-size: 40px;
-    font-weight: 600;
-    color: #ffc02f;
-  }
-  .circular_progress_4 {
-    position: relative;
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    background: conic-gradient(#ffc02f 3.6deg, #fff 0deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .circular_progress_4::before {
-    content: "";
-    position: absolute;
-    height: 160px;
-    width: 160px;
-    border-radius: 50%;
-    background: #171a21;
-  }
-  .progress_value_4 {
-    position: relative;
-    font-size: 40px;
-    font-weight: 600;
-    color: #ffc02f;
   }
   .projects {
     box-sizing: border-box;
@@ -257,30 +83,31 @@ h1, h2 {
       width: 100%;
     }
   }
-  @media screen and (max-width: 1007px) {
+  @media screen and (max-width: 1000px) {
     .skills_container, .projects, .portfolio_desc {
       flex-direction: column;
       justify-content: unset;
       height: fit-content;
     }
   }
-  @media screen and (max-width: 1007px) {
+  @media screen and (max-width: 1000px) {
     .portfolio_desc {
       width: 100%;
       padding-left: 0px;
       padding-right: 0px;
     }
   }
-  @media screen and (max-width: 1007px) {
+  @media screen and (max-width: 1000px) {
     .portfolio_container {
       width: 100%;
+      height: fit-content;
       flex-direction: column;
       justify-content: unset;
       align-items: center;
       margin: 0 auto 0 auto;
     }
   }
-  @media screen and (max-width: 610px) {
+  @media screen and (max-width: 1000px) {
     .portfolio_img {
       height: 75.7vw;
       flex-direction: column;
@@ -289,40 +116,11 @@ h1, h2 {
       margin: 0 auto 0 auto;
     }
   }
-  @media screen and (min-width: 300px) {
+  @media screen and (max-width: 1000px) {
     .portfolio_desc {
       position: relative;
-      bottom: 200px;
-    }
-  }
-  @media screen and (min-width: 358px) {
-    .portfolio_desc {
-      position: relative;
-      bottom: 150px;
-    }
-  }
-  @media screen and (min-width: 430px) {
-    .portfolio_desc {
-      position: relative;
-      bottom: 100px;
-    }
-  }
-  @media screen and (min-width: 480px) {
-    .portfolio_desc {
-      position: relative;
-      bottom: 50px;
-    }
-  }
-  @media screen and (min-width: 560px) {
-    .portfolio_desc {
-      position: relative;
-      bottom: 10px;
-    }
-  }
-  @media screen and (min-width: 610px) {
-    .portfolio_desc {
-      position: relative;
-      bottom: 0px;
+      top: 40px;
+      
     }
   }
   @media screen and (max-width: 476px) {

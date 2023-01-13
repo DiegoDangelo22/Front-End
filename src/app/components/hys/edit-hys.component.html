@@ -1,0 +1,21 @@
+<div class="modalhys" id="modal">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+  
+        <div *ngIf="skill" class="container">
+          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" class="content">
+              <div class="inputs">
+                  <label for="name">Nombre de la skill</label>
+                  <input type="text" class="form-control" id="name" name="name" [(ngModel)]="skill.name" required>
+      
+      
+                  <label for="percentage">Porcentaje</label>
+                  <input type="text" class="form-control" id="percentage" name="percentage" [(ngModel)]="skill.percentage" required>
+              </div>
+              <button class="btnooo">Actualizar skill</button>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>

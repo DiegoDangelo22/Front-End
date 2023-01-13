@@ -12,22 +12,47 @@
     </style>
   </head>
   <body>
-    <div class="header">
-      <div class="logo"><img src="../../assets/public/logo.png" alt=""></div>
-      <p id="logo_text">#Yo Programo</p>
+    <header>
+      <div class="logo" routerLink="/">
+        <img src="../../assets/public/logo.png" alt="">
+        <p id="logo_text">#Yo Programo</p>
+      </div>
+      
       <div class="container">
         <div class="container_container">
             <a class="twitter" href="https://twitter.com/Kaxzark" target="_BLANK"><img id="twitter" src="../../assets/public/twitter-logo-60.png" alt="Mi cuenta de Twitter"></a>
         </div>
-        <nav>
+        <div class="container_container">
+          <a class="github" href="https://github.com/Kaxzark" target="_BLANK"><img id="github" src="../../assets/public/github-logo-white.png" alt="Mi cuenta de GitHub"></a>
+        </div>
+        <nav class="nav">
           <ul class="nav_ul">
-            <li class="nav_ul_li"><a (click)="login()" *ngIf="!isLogged && !loginUrl">Log in</a>
-                                  <a (click)="goHome()" *ngIf="!isLogged && loginUrl">Go Home</a>
+            <li class="nav_ul_li"><a (click)="login()" *ngIf="!isLogged && !loginUrl">Home</a>
+                                  <a (click)="goHome()" *ngIf="!isLogged && loginUrl">Home</a>
                                   <a (click)="onLogOut()" *ngIf="isLogged">Log out</a>
             </li>
           </ul>
         </nav>
+        <div class="responsive-bar">
+          <i class="fa-solid fa-bars"></i>
+          <div class="responsive-bar-content">
+            <div class="container_res">
+              <a class="twitter" href="https://twitter.com/Kaxzark" target="_BLANK"><img id="twitter" src="../../assets/public/twitter-logo-60.png" alt="Mi cuenta de Twitter"></a>
+          </div>
+          <div class="container_res">
+            <a class="github" href="https://github.com/Kaxzark" target="_BLANK"><img id="github" src="../../assets/public/github-logo-white.png" alt="Mi cuenta de GitHub"></a>
+          </div>
+          <nav>
+            <ul class="nav_ul_res">
+              <li class="nav_ul_li_res"><a (click)="login()" *ngIf="!isLogged && !loginUrl">Home</a>
+                                    <a (click)="goHome()" *ngIf="!isLogged && loginUrl">Home</a>
+                                    <a (click)="onLogOut()" *ngIf="isLogged">Log out</a>
+              </li>
+            </ul>
+          </nav>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
   </body>
 </html>

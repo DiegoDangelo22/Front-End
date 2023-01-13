@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppComponent } from 'src/app/app.component';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/services/educacion.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -10,9 +11,12 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class EducacionComponent implements OnInit {
   educacion: Educacion[] = [];
+  nombreEdu: string = '';
+  descripcionEdu: string = '';
 
-  constructor(private educacionService: EducacionService, private tokenService: TokenService) { }
+  constructor(private educacionService: EducacionService, private tokenService: TokenService, private notif:AppComponent) { }
   isLogged = false;
+  isAdmin = false;
 
   ngOnInit(): void {
     this.cargarEducacion();
@@ -21,12 +25,44 @@ export class EducacionComponent implements OnInit {
     } else {
       this.isLogged = false;
     }
+    if(this.tokenService.getAuthorities()[1] === 'ROLE_ADMIN'){
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+
+    if(this.isAdmin == true) {
+      setTimeout(() => {
+        var modaledu:HTMLElement = document.querySelector('.modaledu');
+      var btnedu:HTMLElement = document.querySelector('.newedu');
+      btnedu.addEventListener('click', ()=> {
+        modaledu.style.display = "flex";
+        window.onclick = function(event) {
+          if (event.target == modaledu) {
+            modaledu.style.display = "none";
+          }
+        } 
+      })
+      }, 1000);
+    }
+    
   }
 
   cargarEducacion(): void {
     this.educacionService.lista().subscribe(
       data =>{
         this.educacion = data;
+      }
+    )
+  }
+
+  onCreate(): void {
+    const educacion = new Educacion(this.nombreEdu, this.descripcionEdu);
+    this.educacionService.save(educacion).subscribe(
+      data => {
+        this.notif.noti();
+      }, err => {
+        alert("Falló");
       }
     )
   }

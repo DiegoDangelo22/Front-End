@@ -1,13 +1,23 @@
-<div *ngIf="educacion">
-    <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
-        <div>
-            <label for="nombreEdu">Nombre de la institución</label>
-            <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="educacion.nombreEdu" required>
-        </div>
-        <div>
-            <label for="descripcionEdu">Descripción del estudio</label>
-            <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="educacion.descripcionEdu" required>
-        </div>
-        <button class="btn btn-primary">Editar educación</button>
-    </form>
-</div>
+<div class="modaledu" id="modal">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+  
+  
+  
+        <div *ngIf="educacion" class="container">
+          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" class="content">
+              <div class="inputs">
+                  <label for="nombreEdu">Educación</label>
+                  <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="educacion.nombreEdu" required>
+      
+      
+                  <label for="descripcionEdu">Descripción</label>
+                  <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="educacion.descripcionEdu" required>
+              </div>
+              <button class="btn">Actualizar educación</button>
+          </form>
+      </div>
+      </div>
+    </div>
+  </div>

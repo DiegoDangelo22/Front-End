@@ -1,6 +1,6 @@
     <div class="edu">
       <h1>Educación</h1>
-      <button type="button" class="newedu" routerLink="/nuevaedu" *ngIf="isLogged"><i class="fa-regular fa-square-plus"></i></button>
+      <button type="button" class="newedu" id="newedu" *ngIf="isLogged && isAdmin"><i class="fa-regular fa-square-plus"></i></button>
     </div>
 
   <div class="lista">
@@ -12,12 +12,36 @@
         </div>
 
         <div class="delete_edit_container">
-          <li *ngIf="isLogged" class="lapiz"><button routerLink="/editedu/{{Educacion.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
-          <li *ngIf="isLogged" class="tachito"><button (click)="borrar(Educacion.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
+          <li *ngIf="isLogged && isAdmin" class="lapiz"><button routerLink="/editedu/{{Educacion.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
+          <li *ngIf="isLogged && isAdmin" class="tachito"><button (click)="borrar(Educacion.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
         </div>
       
 
       </div>
       
     </ul>
+  </div>
+
+  <div class="modaledu" id="modal">
+    <div class="modal-content">
+      
+      <div class="modal-body">
+  
+  
+  
+        <div class="container">
+          <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
+              <div class="inputs">
+                  <label for="nombreEdu">Educación</label>
+                  <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="nombreEdu" required>
+      
+      
+                  <label for="descripcionEdu">Descripción</label>
+                  <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="descripcionEdu" required>
+              </div>
+              <button class="btn">Agregar educación</button>
+          </form>
+      </div>
+      </div>
+    </div>
   </div>

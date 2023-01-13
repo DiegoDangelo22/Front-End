@@ -1,18 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditAboutComponent } from './components/about/edit-about.component';
 import { EditEducacionComponent } from './components/educacion/edit-educacion.component';
-import { NewEducacionComponent } from './components/educacion/new-educacion.component';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
-import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditHysComponent } from './components/hys/edit-hys.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
-const routes: Routes = [{path:'login', component: LoginComponent},
-                        {path:'', component: HomeComponent},
-                        {path:'nuevaexp', component: NewExperienciaComponent},
+const routes: Routes = [
+                        {path:'', redirectTo:'login', pathMatch:'full'},
+                        {path:'login', component: LoginComponent},
+                        {path:'signup', component: SignupComponent},
+                        {path:'portfolio', component: HomeComponent},
                         {path:'editexp/:id', component: EditExperienciaComponent},
-                        {path:'nuevaedu', component: NewEducacionComponent},
-                        {path:'editedu/:id', component: EditEducacionComponent}];
+                        {path:'editedu/:id', component: EditEducacionComponent},
+                        {path:'editskill/:id', component: EditHysComponent},
+                        {path:'editpersona/:id', component: EditAboutComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,100 @@
+.banner {
+    display: flex;
+    background-image: url('../../../assets/public/code_text_colorful_140555_3024x4032.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200px;
+  }
+  .about_0 {
+    margin: 0 30px 0px 30px;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 30px;
+  }
+  .about_1 {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: max-content;
+    float: left;
+  }
+  .profile_pic {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    bottom: 50px;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 0 auto;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  img {
+    width: 152px;
+    height: 152px;
+    flex-shrink: 0;
+    object-fit: cover;
+    align-self: center;
+  }
+  .about_2 {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 70%;
+    height: max-content;
+    float: right;
+    padding: 10px 30px 0px 30px;
+  }
+  .name {
+    position: relative;
+    bottom: 40px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+  }
+  .editperson {
+    padding: 5px 8px;
+    border-radius: 18px;
+    font-size: 16px;
+    border: 0px;
+    color: #fff;
+    background: #ee0979;
+    background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+    background: linear-gradient(to left, #ff6a00, #ee0979);
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background: #171a21;
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
+    background: linear-gradient(to right, #1CB5E0, #000046);
+    line-height: 1.6;
+  }
+  h1, h2 {
+    margin: 0;
+    text-align: center;
+  }
+  textarea {
+    border-radius: 15px;
+    border: none;
+    resize: none;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    font-size: 18px;
+    background: #fff;
+    color: #171a21;
+    scrollbar-width: none;
+  }
+  @media screen and (max-width: 700px) {
+    .about_1, .about_2 {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .about_2 {
+      margin-bottom: 50px;
+    }
+  }

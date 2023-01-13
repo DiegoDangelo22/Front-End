@@ -1,0 +1,72 @@
+<app-header></app-header>
+<html>
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio Web</title>
+        <style>
+           @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+          @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&display=swap");
+          @import url("styles.css");
+        </style>
+      </head>
+
+
+        <body>
+          <div id="row" *ngIf="persona">
+            <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" class="content">
+
+            
+
+
+            <div class="banner"></div>
+            <div class="about_0">
+              <div class="about_1">
+                <div class="profile_pic">
+                  
+                    <label class="add-image" for="img">
+
+
+                        
+
+                      <i class="fa-regular fa-square-plus"></i>
+                      
+                      <input type="file" class="form-control" id="img" name="img" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png">
+                      
+                    </label>
+                    
+
+
+                    
+                      <img src="{{persona.img}}" alt="">
+  
+                    
+                      <img [src]="imgServ.url" width="150px">
+                    
+
+                    
+
+
+    
+                </div>
+                
+                <div class="name">
+                  <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="persona.nombre" required>
+                  <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="persona.apellido" required>
+                  <input id="profesion" name="profesion" [(ngModel)]="persona.profesion" required>
+                  <div class="editpersoncont">
+                    <button type="submit" class="editperson" *ngIf="isLogged"><i class="fa-regular fa-square-plus"></i> Actualizar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="about_2">
+                
+                <h2>Acerca de</h2>
+                <textarea cols="40" rows="8" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="persona.descripcion" required></textarea>
+              </div>
+            </div>
+            </form>
+            </div>
+        </body>
+        </html>
