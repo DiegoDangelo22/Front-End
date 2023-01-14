@@ -27,7 +27,11 @@ export class EditAboutComponent implements OnInit {
 
   onUpdate():void{
     const id = this.activatedRoute.snapshot.params['id'];
-    this.persona.img = this.imgServ.url;
+    if(this.imgServ.url === ""){
+      this.persona.img;
+    } else {
+      this.persona.img = this.imgServ.url;
+    }
     this.persoServ.update(id, this.persona).subscribe(
       data => {
         this.router.navigate(['/portfolio']);
