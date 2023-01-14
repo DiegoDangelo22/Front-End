@@ -14,18 +14,11 @@ export class HomeComponent implements OnInit {
     constructor(private tokenServ:TokenService, private router:Router) {    }
   
     ngOnInit(): void {
-      if(this.tokenServ.getToken()){
-        this.isLogged = true;
-      } else {
-        this.isLogged = false;
-        this.router.navigate(['']);
-      }
-      if(this.tokenServ.getAuthorities()[1] === 'ROLE_ADMIN'){
-        this.isAdmin = true;
-      } else {
-        this.isAdmin = false;
-      }
-
+        if(this.tokenServ.getToken()){
+          this.isLogged = true;
+        } else {
+          this.isLogged = false;
+          this.router.navigate(['/login']);
+        }
   }
-
 }

@@ -25,7 +25,7 @@ export class EducacionComponent implements OnInit {
     } else {
       this.isLogged = false;
     }
-    if(this.tokenService.getAuthorities()[1] === 'ROLE_ADMIN'){
+    if((this.tokenService.getAuthorities()[1] || this.tokenService.getAuthorities()[2])){
       this.isAdmin = true;
     } else {
       this.isAdmin = false;

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   errMsj!: string;
   formLogin: FormGroup;
+  isAdmin = false;
 
   constructor(private tokenService: TokenService, private authService: AuthService, private router: Router, private formBuilder: FormBuilder)
    {
