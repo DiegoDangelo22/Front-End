@@ -28,9 +28,10 @@ body {
 
 .form.login {
   position: absolute;
-  left: 50%;
+  left: -110px;
   bottom: -86%;
-  transform: translateX(-50%);
+  top: 66%;
+  transform: translateY(-50%);
   width: calc(100% + 220px);
   padding: 20px 140px;
   border-radius: 50%;
