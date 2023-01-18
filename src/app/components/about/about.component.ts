@@ -24,7 +24,7 @@ export class AboutComponent implements OnInit {
     } else {
       this.isLogged = false;
     }
-    if((this.tokenService.getAuthorities()[1] || this.tokenService.getAuthorities()[2])){
+    if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
       this.isAdmin = true;
     } else {
       this.isAdmin = false;

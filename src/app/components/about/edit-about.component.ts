@@ -15,12 +15,22 @@ export class EditAboutComponent implements OnInit {
 
   constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService) { }
   isLogged = false;
+  isAdmin = false;
   ngOnInit(): void {
     this.cargarPersona();
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
       this.isLogged = false;
+    }
+    if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+
+    if(this.router.url == '/editpersona/1' && this.isAdmin == false) {
+      this.router.navigate(['/login']);
     }
   }
 

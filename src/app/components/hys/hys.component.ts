@@ -27,7 +27,7 @@ export class HysComponent implements OnInit {
     } else {
       this.isLogged = false;
     }
-    if((this.tokenServ.getAuthorities()[1] || this.tokenServ.getAuthorities()[2])){
+    if((this.tokenServ.getAuthorities()[0] && this.tokenServ.getAuthorities()[1])){
       this.isAdmin = true;
     } else {
       this.isAdmin = false;
