@@ -1,0 +1,195 @@
+.projects {
+    min-width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    color: #fff;
+    background: #ee0979;
+    background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+    background: linear-gradient(to left, #ff6a00, #ee0979);
+    margin: 110px 0 110px 0;
+    
+  }
+  .container {
+    width: min-content;
+    min-width: min-content;
+    display: flex;
+    align-items: center;
+  }
+  .container > h1 {
+    width: max-content;
+    min-width: 330px;
+    font-size: 40px;
+    text-align: center;
+    
+  }
+  .container > h1::before {
+    content: "⚡ "
+  }
+  .container > h1::after {
+    content: " ⚡"
+  }
+  .portfolio_container {
+    display: flex;
+    margin: 0 -40px 110px 40px;
+    width: 60vw;
+    height: min-content;
+    float: left;
+    align-items: center;
+    flex-direction: column;
+  }
+  .btn {
+    background: #000;
+    width: 100%;
+    height: fit-content;
+    margin-top: -8px;
+    padding: 10px 0;
+  }
+  #add1 {
+    display: flex;
+
+    float: left;
+  height: fit-content;
+  margin-left: 305px;
+  font-size: 30px;
+  background: transparent;
+  border: transparent;
+  color: #fff;
+  }
+  #add2 {
+display: flex;
+    float: right;
+  height: fit-content;
+  margin-right: 305px;
+  font-size: 30px;
+  background: transparent;
+  border: transparent;
+  color: #fff;
+  }
+  .btn > button {
+    vertical-align: middle;
+    padding: 5px 8px;
+    border-radius: 18px;
+    font-size: 16px;
+    border: 0px;
+    color: #fff;
+    background: #ee0979;
+    background: -webkit-linear-gradient(to left, #ff6a00, #ee0979);
+    background: linear-gradient(to left, #ff6a00, #ee0979);
+    margin: 0 10px;
+  }
+  .portfolio_img {
+    width: min-content;
+    text-align: center;
+    color: #fff;
+  }
+  .portfolio_img > img {
+    width: 60vw;
+    height: fit-content;
+    object-fit: contain;
+    border: 2px solid #fff;
+    background: #000;
+  }
+  .portfolio_img > h2 {
+    width: auto;
+    margin: 0 auto 0 auto;
+    background: #ee0979;
+    background: -webkit-linear-gradient(to right, #ff6a00, #ee0979);
+    background: linear-gradient(to right, #ff6a00, #ee0979);
+  }
+  .portfolio_desc {
+    display: flex;
+    float: right;
+    width: 40vw;
+    height: 500px;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+  @media screen and (max-width: 1000px) {
+    .containerdetodo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      align-content: center;
+      width: 100%;
+      align-self: center;
+    }
+    .portfolio_container {
+     display: flex;
+     width: fit-content;
+     margin: 0 0 110px 0;
+     flex-direction: column;
+     align-self: center;
+    }
+    .portfolio_desc {
+      height: min-content;
+      width: fit-content;
+      margin-top: -100px;
+      margin-bottom: 110px;
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .portfolio_img > img {
+      min-width: 292px;
+    }
+  }
+  /* @media screen and (max-width: 700px) {
+    .about_1, .about_2, .skills_container {
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .skills_container, .projects, .portfolio_desc {
+      flex-direction: column;
+      justify-content: unset;
+      height: fit-content;
+    }
+  }
+ 
+  @media screen and (max-width: 1000px) {
+    .portfolio_container {
+      width: 100%;
+      height: fit-content;
+      flex-direction: column;
+      justify-content: unset;
+      align-items: center;
+      margin: 0 auto 0 auto;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .portfolio_img {
+      height: 75.7vw;
+      flex-direction: column;
+      justify-content: unset;
+      align-items: center;
+      margin: 0 auto 0 auto;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .portfolio_desc {
+      position: relative;
+      top: 40px;
+      
+    }
+  }
+  @media screen and (max-width: 476px) {
+    #logo_text {
+      position: absolute;
+      top: 44px;
+      left: 30px;
+    }
+  }
+  @media screen and (max-width: 476px) {
+    .logo {
+      position: relative;
+      bottom: 10px;
+    }
+  } */
+
+
+ 

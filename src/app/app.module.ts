@@ -23,6 +23,9 @@ import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { EditAboutComponent } from './components/about/edit-about.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
+import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
+import { NewProyectoComponent } from './components/proyectos/new-proyecto.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { SignupComponent } from './components/signup/signup.component';
     EditHysComponent,
     AboutComponent,
     EditAboutComponent,
-    SignupComponent
+    SignupComponent,
+    ProyectosComponent,
+    EditProyectosComponent,
+    NewProyectoComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +80,7 @@ import { SignupComponent } from './components/signup/signup.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage())
   ],
-  providers: [interceptorProvider],
+  providers: [interceptorProvider, NewProyectoComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

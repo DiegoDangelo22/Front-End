@@ -61,6 +61,8 @@ export class EditAboutComponent implements OnInit {
   uploadImage($event:any){
     const id = this.activatedRoute.snapshot.params['id'];
     const name = "perfil_" + id;
+    
+
     this.imgServ.uploadImage($event, name);
   }
 
