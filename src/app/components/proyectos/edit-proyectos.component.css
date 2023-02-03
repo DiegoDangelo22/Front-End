@@ -156,6 +156,9 @@
     .btn123 {
       display: none;
     }
+    .btn123456 {
+      display: flex;
+    }
     .img-container {
       min-width: max-content;
       margin: -10px 0 0 0;

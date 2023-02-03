@@ -171,3 +171,19 @@ label {
   font-family: UD Digi Kyokasho NP-R;
   font-size: 20px;
 }
+
+@media screen and (max-width: 1000px) {
+  .name_desc_container {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 562px) {
+  .nomdes {
+    flex-direction: column;
+  }
+  .name_desc_container {
+    width: 100%;
+    padding-right: 50px;
+  }
+}

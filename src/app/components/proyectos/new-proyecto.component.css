@@ -79,6 +79,12 @@
     font-size: 20px;
     margin-top: 30px;
   }
+  .btn123456 {
+    display: none;
+    font-family: UD Digi Kyokasho NP-R;
+    font-size: 20px;
+    margin-top: 30px;
+  }
 
   .img-container{
     background: #171a21;
