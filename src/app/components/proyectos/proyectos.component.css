@@ -1,7 +1,8 @@
 .projects {
-    min-width: 400px;
-    box-sizing: border-box;
     display: flex;
+    /* min-width: 397px; */
+    box-sizing: border-box;
+    align-items: center;
     justify-content: center;
     width: 100%;
     height: 100px;
@@ -11,6 +12,7 @@
     background: linear-gradient(to left, #ff6a00, #ee0979);
     margin: 110px 0 110px 0;
   }
+
   .container {
     /* width: min-content; */
     /* min-width: min-content; */
@@ -45,21 +47,18 @@
     padding: 10px 0;
   }
   #add1 {
-    display: flex;
 
     float: left;
   height: fit-content;
-  margin-left: 305px;
   font-size: 30px;
   background: transparent;
   border: transparent;
   color: #fff;
   }
   #add2 {
-display: flex;
+
     float: right;
   height: fit-content;
-  margin-right: 305px;
   font-size: 30px;
   background: transparent;
   border: transparent;

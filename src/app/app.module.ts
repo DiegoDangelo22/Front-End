@@ -44,7 +44,7 @@ import { NewProyectoComponent } from './components/proyectos/new-proyecto.compon
     SignupComponent,
     ProyectosComponent,
     EditProyectosComponent,
-    NewProyectoComponent
+    NewProyectoComponent,
   ],
   imports: [
     BrowserModule,

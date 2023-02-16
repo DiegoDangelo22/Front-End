@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, Input, ElementRef, OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/model/persona.model';
 import { ImageService } from 'src/app/services/image.service';
@@ -12,8 +12,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class EditAboutComponent implements OnInit {
   persona: Persona = null;
-
-  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService) { }
+  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService) {  }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
@@ -61,9 +60,10 @@ export class EditAboutComponent implements OnInit {
   uploadImage($event:any){
     const id = this.activatedRoute.snapshot.params['id'];
     const name = "perfil_" + id;
-    
 
     this.imgServ.uploadImage($event, name);
+    let imgvieja:HTMLImageElement = document.querySelector('#myimg');
+    imgvieja.style.opacity = '0'
   }
 
 }
