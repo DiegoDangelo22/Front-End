@@ -1,5 +1,7 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
 body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
     background: #171a21;
     background: -webkit-linear-gradient(to right, #1CB5E0, #000046);
@@ -85,12 +87,14 @@ body {
     background: linear-gradient(to left, #ff6a00, #ee0979);
   }
   input {
-    padding: 10px;
+    padding: 5px 20px 5px 20px;
     width: 100%;
+    box-sizing: border-box;
     border-radius: 15px;
     border: none;
     font-size: 16px;
     margin: 5px 0px;
+    box-sizing: border-box;
   }
 
   input[type="file"] {
@@ -118,4 +122,127 @@ textarea {
   box-sizing: border-box;
   font-size: 18px;
   scrollbar-width: none;
+}
+
+
+
+/* The Modal (background) */
+.modalPP {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  position: relative;
+  margin: auto;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  background-color: #fefefe;
+  padding: 10px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+  /* Add Animation */
+  @keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
+
+/* NUEVA EXPERIENCIA STYLES */
+.container {
+  background-image: url('../../../assets/public/5344385.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  font-family: UD Digi Kyokasho NP-R;
+  font-size: 20px;
+  color: #fff;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.content2 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.modal-imagenes {
+  display: flex;
+  margin: 0 20px;
+}
+
+#koog {
+  display: block;
+  max-width: 100%;
+  background: #171a21;
+  position: static;
+}
+
+#output {
+  display: block;
+  max-width: 100%;
+  background: #171a21;
+  position: static;
+}
+
+.botones {
+  display: flex;
+  width: 50%;
+  margin-top: 70px;
+}
+
+.botones > button {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.inputs {
+  width: 50%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-self: center;
+  text-align: center;
+  margin-top: 50px;
+}
+
+label {
+  padding: 20px 0;
+  overflow-wrap: break-word;
+}
+
+.btn {
+  font-family: UD Digi Kyokasho NP-R;
+  font-size: 20px;
+  width: 50%;
+  align-self: center;
+}
+
+@media screen and (max-width: 700px) {
+  .about_1, .about_2 {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .about_2 {
+    margin-bottom: 50px;
+    padding: 0;
+  }
 }

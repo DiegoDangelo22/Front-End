@@ -104,7 +104,7 @@ body {
   }
   .responsive-bar {
     display: none;
-    background: #000;
+    background: transparent;
     top: 0;
     right: 0;
     width: 100px;
