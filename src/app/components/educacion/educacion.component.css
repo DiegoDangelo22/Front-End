@@ -1,5 +1,6 @@
 .edu {
   display: flex;
+  box-sizing: border-box;
   background: pink;
   width: 100%;
   height: 100px;
