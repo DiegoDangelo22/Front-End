@@ -7,12 +7,39 @@ import { TokenService } from './services/token.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = "";
+  isLogged = false;
+  loginUrl = this.router.url == "/login";
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private tokenService: TokenService) { }
 
+  ngOnInit(): void {
+    if(this.tokenService.getToken()){
+      this.isLogged=true;
+    }else{
+      this.isLogged = false;
+    }
+      let resbarcont:HTMLElement = document.querySelector('.responsive-bar-content');
+      let resbar:HTMLElement = document.querySelector('.responsive-bar');
+      resbar.addEventListener("click", ()=>{
+      resbarcont.classList.toggle('responsive-bar-content-toggleada');
+      }, {passive:true, once:false});
+  }
 
+  onLogOut():void{
+    this.tokenService.logOut();
+    window.location.reload();
+  }
+
+  // login(){
+  //     this.router.navigate(['/login']);
+  // }
+
+  // goHome(){
+  //     this.router.navigate(['/']);
+  // }
+  
   noti():any {
 
     let button:any = document.querySelector(".btn");

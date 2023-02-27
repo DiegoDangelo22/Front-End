@@ -11,9 +11,9 @@
     <div class="portfolio_img">
       <h2>{{Proyectos.proyecto}}</h2>
       <img src="{{Proyectos.img}}" alt="">
-      <div class="btn">
+      <div class="btn" id="botones-proyecto">
       <button type="button" class="editproyecto" routerLink="/editproyecto/{{Proyectos.id}}" *ngIf="isLogged && isAdmin"><i class="fa-regular fa-square-plus"></i> Editar</button>
-      <button (click)="delete(Proyectos.id)"><i class="fa-solid fa-xmark"></i> Eliminar</button>
+      <button (click)="delete(Proyectos.id)" *ngIf="isLogged && isAdmin"><i class="fa-solid fa-xmark"></i> Eliminar</button>
     </div>
     </div>
   </div>

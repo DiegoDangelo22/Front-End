@@ -46,6 +46,9 @@
     margin-top: -8px;
     padding: 10px 0;
   }
+  #botones-proyecto {
+    display: block;
+  }
   #add1 {
 
     float: left;

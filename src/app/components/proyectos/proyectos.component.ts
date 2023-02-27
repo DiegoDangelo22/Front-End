@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { NewProyectoComponent } from './new-proyecto.component';
@@ -13,7 +13,7 @@ import { getStorage, ref, deleteObject } from "firebase/storage";
   templateUrl: './proyectos.component.html',
   styleUrls: ['./proyectos.component.css']
 })
-export class ProyectosComponent implements OnInit {
+export class ProyectosComponent implements OnInit, AfterViewChecked, OnDestroy {
   proyectos: Proyectos[] = [];
   proyecto: string = '';
   descripcion: string = '';
@@ -28,7 +28,6 @@ export class ProyectosComponent implements OnInit {
   isAdmin = false;
   ngOnInit(): void {
     this.cargarProyectos();
-    
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -39,33 +38,19 @@ export class ProyectosComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
+  }
 
-
-    if(this.isAdmin == true) {
-      // setTimeout(() => {
-      //   var modalproyecto:HTMLElement = document.querySelector('.modalproyecto');
-      // var btn1:HTMLElement = document.querySelector('#add1');
-      // var btn2:HTMLElement = document.querySelector('#add2');
-      // btn1.addEventListener('click', ()=> {
-      //   modalproyecto.style.display = "flex";
-      //   window.onclick = function(event) {
-      //     if (event.target == modalproyecto) {
-      //       modalproyecto.style.display = "none";
-      //     }
-      //   } 
-      // });
-      // btn2.addEventListener('click', ()=> {
-      //   modalproyecto.style.display = "flex";
-      //   window.onclick = function(event) {
-      //     if (event.target == modalproyecto) {
-      //       modalproyecto.style.display = "none";
-      //     }
-      //   } 
-      // });
-      // }, 1000);
+  ngAfterViewChecked(): void {
+    if(this.isAdmin == false && this.proyectos.length > 0){
+      console.clear()
+      let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
+      proyectosbtn.style.display = 'none'
     }
   }
 
+  ngOnDestroy(): void {
+    console.clear()
+  }
 
   cargarProyectos():void{
       this.proyectosService.lista().subscribe(data => {this.proyectos = data});
