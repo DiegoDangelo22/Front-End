@@ -5,6 +5,8 @@ import { Proyectos } from 'src/app/model/proyectos';
 import { ImageService } from 'src/app/services/image.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { TokenService } from 'src/app/services/token.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-new-proyecto',
@@ -17,17 +19,13 @@ export class NewProyectoComponent implements OnInit {
   descripcion: string = '';
   img: string = '';
   
-  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private activatedRoute:ActivatedRoute) { }
+  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private activatedRoute:ActivatedRoute, private http: HttpClient) { }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
     this.cargarProyectos();
     this.imgServ.url = ''
 
-
-      
-    
-    
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -58,35 +56,18 @@ export class NewProyectoComponent implements OnInit {
   }
 
   uploadImage($event:any){
-    // this.proyectos.forEach(element  => {let asd = element.id;console.log(asd)})
-    
-      // console.log(this.proyectos.pop().id)
 
+      this.http.get(environment.URL + 'proyectos/data').subscribe(data => {
+      let proyectodata:any = data;
 
-      this.proyectosService.lista().subscribe(data => {
-        this.proyectos = data;
-        
-      if(this.proyectos.length === 0) {
-        
-          
-          let noombrreeeid = 1;
+        const id = proyectodata;
+        let noombrreeeid = id;
         const nombre = "proyecto_" + noombrreeeid;
         this.imgServ.uploadImage($event, nombre)
-        } else {
-          let noombrreeeid = this.proyectos.pop().id + 1;
-        const nombre = "proyecto_" + noombrreeeid;
- 
-
-          this.imgServ.uploadImage($event, nombre)
-          
-          
-        
-        }
-      })
       
-    
-      
-        
+      }, error => {
+        console.error(error);
+      });
       
   }
 
