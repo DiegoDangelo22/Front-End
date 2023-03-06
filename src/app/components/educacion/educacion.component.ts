@@ -3,6 +3,8 @@ import { AppComponent } from 'src/app/app.component';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/services/educacion.service';
 import { TokenService } from 'src/app/services/token.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-educacion',
@@ -14,7 +16,7 @@ export class EducacionComponent implements OnInit {
   nombreEdu: string = '';
   descripcionEdu: string = '';
 
-  constructor(private educacionService: EducacionService, private tokenService: TokenService, private notif:AppComponent) { }
+  constructor(private educacionService: EducacionService, private tokenService: TokenService, private notif:AppComponent, private http: HttpClient) { }
   isLogged = false;
   isAdmin = false;
 
@@ -57,7 +59,11 @@ export class EducacionComponent implements OnInit {
   }
 
   onCreate(): void {
-    const educacion = new Educacion(this.nombreEdu, this.descripcionEdu);
+    this.http.get(environment.URL + 'auth/user-id').subscribe(data => {
+    let user_id:any = data;
+    console.log(data)
+    
+    const educacion = new Educacion(this.nombreEdu, this.descripcionEdu, user_id);
     this.educacionService.save(educacion).subscribe(
       data => {
         this.notif.noti();
@@ -65,6 +71,7 @@ export class EducacionComponent implements OnInit {
         alert("Falló");
       }
     )
+    })
   }
 
   borrar(id?: number){
