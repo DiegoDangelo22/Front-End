@@ -13,7 +13,6 @@
     <div class="progress"></div>
 </div>
 
-
 <!-- HEADER COMPONENT -->
 
 <!DOCTYPE html>
@@ -46,8 +45,8 @@
         <nav class="nav">
           <ul class="nav_ul">
             <li class="nav_ul_li">
-                                  <a (click)="onLogOut()" *ngIf="isLogged">Log out</a>
-                                  <a (click)="onLogOut()" *ngIf="!isLogged">Log out</a>
+              <a (click)="onLogOut()" *ngIf="loggedIn">{{buttonText}}</a>
+              <a (click)="login()" *ngIf="!loggedIn">{{buttonText}}</a>
             </li>
           </ul>
         </nav>
@@ -63,8 +62,8 @@
           <nav>
             <ul class="nav_ul_res">
               <li class="nav_ul_li_res">
-                                    <a (click)="onLogOut()" *ngIf="isLogged">Log out</a>
-                                    <a (click)="onLogOut()" *ngIf="!isLogged">Log out</a>
+                                    <a (click)="onLogOut()" *ngIf="loggedIn">{{buttonText}}</a>
+                                    <a routerLink="/login" *ngIf="!loggedIn">{{buttonText}}</a>
               </li>
             </ul>
           </nav>
@@ -74,4 +73,7 @@
     </header>
   </body>
 </html>
+
+  
+
 <router-outlet></router-outlet>

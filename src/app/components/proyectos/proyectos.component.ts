@@ -7,6 +7,8 @@ import { ImageService } from 'src/app/services/image.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { TokenService } from 'src/app/services/token.service';
 import { getStorage, ref, deleteObject } from "firebase/storage";
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
 
 @Component({
   selector: 'app-proyectos',
@@ -19,7 +21,7 @@ export class ProyectosComponent implements OnInit, AfterViewChecked, OnDestroy {
   descripcion: string = '';
   img: string = '';
 
-  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private ActivatedRoute:ActivatedRoute, private newProyecto:NewProyectoComponent)
+  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private ActivatedRoute:ActivatedRoute, private newProyecto:NewProyectoComponent, private interceptServ: InterceptorService, private usuarioService: UsuarioService)
    {
 
    }
@@ -41,19 +43,23 @@ export class ProyectosComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngAfterViewChecked(): void {
-    if(this.isAdmin == false && this.proyectos.length > 0){
-      console.clear()
+    if(this.proyectos.length > 0){
+      // console.clear()
       let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
-      let proyectosh1:HTMLElement = document.querySelector("#proyectos-h1");
-      proyectosbtn.style.display = 'none'
-      if(proyectosh1.style.width < '392px'){
-        proyectosh1.style.fontSize = "40px"
-      }
+      proyectosbtn.style.display = 'block'
     }
+    let proyectosh1:HTMLElement = document.querySelector("#proyectos-h1");
+    // if(proyectosh1.style.width < '392px'){
+    //   proyectosh1.style.fontSize = "40px"
+    // }
   }
 
   ngOnDestroy(): void {
-    console.clear()
+    // console.clear()
+  }
+
+  mostrarProyectos(proyectos: Proyectos): boolean {
+    return proyectos.usuario.id === this.interceptServ.getUserId();
   }
 
   cargarProyectos():void{
@@ -79,7 +85,7 @@ export class ProyectosComponent implements OnInit, AfterViewChecked, OnDestroy {
     deleteObject(Ref).then(() => {
       // alert("File deleted successfully");
     }).catch((error) => {
-      alert("Uh-oh, an error occurred!");
+      // alert("Uh-oh, an error occurred!");
     });
   }
 

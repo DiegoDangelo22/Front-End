@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
     }
     
-    if(this.router.url == '/login' && this.isLogged == true) {
-      this.router.navigate(['/portfolio']);
+    if(this.router.url == '/login' && this.tokenService.getUserName() == "Diego") {
+      
+    } else {
+      this.router.navigate(['/']);
     }
   }
 
@@ -54,7 +56,8 @@ export class LoginComponent implements OnInit {
         this.tokenService.setUserName(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.router.navigate(['/portfolio']);
+        this.router.navigate(['/']);
+        window.location.reload();
       }, err =>{
         this.isLogged = false;
         this.isLogginFail = true;

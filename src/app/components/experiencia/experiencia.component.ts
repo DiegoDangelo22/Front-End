@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Experiencia }from 'src/app/model/experiencia';
+import { Usuario } from 'src/app/model/usuario';
 import { ExperienciaService } from 'src/app/services/experiencia.service';
 import { TokenService } from 'src/app/services/token.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-experiencia',
@@ -15,8 +19,10 @@ export class ExperienciaComponent implements OnInit {
   nombreExp: string = '';
   descripcionExp: string = '';
   someSubscription: any;
+  usuarioActual: Usuario;
+  experiencia: Experiencia;
 
-  constructor(private expService: ExperienciaService, private tokenService: TokenService, private notif:AppComponent, private router:Router)
+  constructor(private expService: ExperienciaService, private tokenService: TokenService, private notif:AppComponent, private router:Router, private interceptServ: InterceptorService, private usuarioService: UsuarioService, private authService: AuthService)
    {
     this.router.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
@@ -34,7 +40,9 @@ export class ExperienciaComponent implements OnInit {
   isAdmin = false;
 
   ngOnInit(): void {
-    this.cargarExperiencia();
+    this.authService.getExperiencia().subscribe(exp => {
+      this.exp = exp || []; // asegurarse de manejar el caso en que edu es null
+    });
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -83,8 +91,23 @@ export class ExperienciaComponent implements OnInit {
     }
   }
 
+  // obtenerUsuarioActual(): void {
+  //   this.usuarioService.getUsuarioById().subscribe(data => {
+  //     this.usuarioActual = data;
+  //   });
+  // }
+
+  mostrarExperiencia(experiencia: Experiencia): any {
+    if(experiencia && this.tokenService.getToken()){
+      const expUser = this.exp.find(experiencia => experiencia.usuario.id === 27);
+      return expUser;
+    } else {
+      return true;
+    }
+  }
+
   onCreate(): void{
-    const expe = new Experiencia(this.nombreExp, this.descripcionExp);
+    const expe = new Experiencia(this.nombreExp, this.descripcionExp, this.interceptServ.getUserId());
     this.expService.save(expe).subscribe(data => {
       this.notif.noti();
     }, err => {

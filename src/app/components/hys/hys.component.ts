@@ -4,6 +4,9 @@ import { AppComponent } from 'src/app/app.component';
 import { Skill } from 'src/app/model/skill';
 import { SkillService } from 'src/app/services/skill.service';
 import { TokenService } from 'src/app/services/token.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
+import { Usuario } from 'src/app/model/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-hys',
@@ -14,8 +17,9 @@ export class HysComponent implements OnInit {
   skill:Skill[] = [];
   name:string;
   percentage:number;
+  usuarioActual: Usuario;
 
-  constructor(private skillServ:SkillService, private notif:AppComponent, private tokenServ:TokenService) { }
+  constructor(private skillServ:SkillService, private notif:AppComponent, private tokenServ:TokenService, private interceptServ: InterceptorService, private usuarioService: UsuarioService) { }
   isLogged = false;
   isAdmin = false;
   
@@ -58,8 +62,18 @@ export class HysComponent implements OnInit {
     )
   }
 
+  // obtenerUsuarioActual(): void {
+  //   this.usuarioService.getUsuarioById().subscribe(data => {
+  //     this.usuarioActual = data;
+  //   });
+  // }
+
+  mostrarHyS(hys: Skill): boolean {
+    return hys.usuario.id === this.interceptServ.getUserId();
+  }
+
   onCreate(): void {
-    const skill = new Skill(this.name, this.percentage);
+    const skill = new Skill(this.name, this.percentage, this.interceptServ.getUserId());
     this.skillServ.save(skill).subscribe(
       data => {
         this.notif.noti();

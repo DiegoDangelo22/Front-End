@@ -6,6 +6,7 @@ import { PersonaService } from 'src/app/services/persona.service';
 import { TokenService } from 'src/app/services/token.service';
 import { getStorage, Storage, ref, uploadBytes, list, getDownloadURL, uploadBytesResumable } from '@angular/fire/storage';
 import Cropper from 'cropperjs';
+import { InterceptorService } from 'src/app/services/interceptor-service';
 
 @Component({
   selector: 'app-edit-about',
@@ -15,7 +16,7 @@ import Cropper from 'cropperjs';
 export class EditAboutComponent implements OnInit {
   persona: Persona = null;
   url:string = "";
-  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage) {  }
+  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage, private interceptServ: InterceptorService) {  }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
@@ -31,9 +32,9 @@ export class EditAboutComponent implements OnInit {
       this.isAdmin = false;
     }
 
-    if(this.router.url == '/editpersona/1' && this.isAdmin == false) {
-      this.router.navigate(['/login']);
-    }
+    // if(this.router.url == '/editpersona/1' && this.isAdmin == false) {
+    //   this.router.navigate(['/login']);
+    // }
 
 
    
@@ -53,16 +54,17 @@ export class EditAboutComponent implements OnInit {
     
     this.persoServ.update(id, this.persona).subscribe(
       data => {
-        this.router.navigate(['/portfolio']);
+        this.router.navigate(['/']);
       }, err => {
         alert("Error al modificar la información");
-        this.router.navigate(['/portfolio']);
+        this.router.navigate(['/']);
       }
     )
   }
 
   cargarPersona(){
-    this.persoServ.detail(1).subscribe(data => {
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.persoServ.detail(id).subscribe(data => {
       this.persona = data;
     })
   }

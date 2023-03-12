@@ -1,19 +1,19 @@
     <div class="edu">
       <h1>Educación</h1>
-      <button type="button" class="newedu" id="newedu" *ngIf="isLogged && isAdmin"><i class="fa-regular fa-square-plus"></i></button>
+      <button type="button" class="newedu" id="newedu"><i class="fa-regular fa-square-plus"></i></button>
     </div>
 
   <div class="lista">
-    <ul *ngFor="let Educacion of educacion">
+    <ul *ngFor="let educacion2 of educacion">
       <div class="nomdes">
         <div class="name_desc_container">
-          <li class="eduname"><h2>{{Educacion.nombreEdu}}</h2></li>
-          <li class="edudesc">{{Educacion.descripcionEdu}}</li>
+          <li class="eduname"><h2>{{educacion2.nombreEdu}}</h2></li>
+          <li class="edudesc">{{educacion2.descripcionEdu}}</li>
         </div>
 
         <div class="delete_edit_container">
-          <li *ngIf="isLogged && isAdmin" class="lapiz"><button routerLink="/editedu/{{Educacion.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
-          <li *ngIf="isLogged && isAdmin" class="tachito"><button (click)="borrar(Educacion.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
+          <li class="lapiz"><button routerLink="/editedu/{{educacion2.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
+          <li class="tachito"><button (click)="borrar(educacion2.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
         </div>
       
 

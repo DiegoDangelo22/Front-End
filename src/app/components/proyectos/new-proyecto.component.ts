@@ -7,6 +7,9 @@ import { ProyectosService } from 'src/app/services/proyectos.service';
 import { TokenService } from 'src/app/services/token.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-new-proyecto',
@@ -18,8 +21,9 @@ export class NewProyectoComponent implements OnInit {
   proyecto: string = '';
   descripcion: string = '';
   img: string = '';
+  usuarioActual: Usuario;
   
-  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private activatedRoute:ActivatedRoute, private http: HttpClient) { }
+  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private activatedRoute:ActivatedRoute, private http: HttpClient, private interceptServ: InterceptorService, private usuarioService: UsuarioService) { }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
@@ -44,9 +48,15 @@ export class NewProyectoComponent implements OnInit {
     });
   }
 
+  // obtenerUsuarioActual(): void {
+  //   this.usuarioService.getUsuarioById().subscribe(data => {
+  //     this.usuarioActual = data;
+  //   });
+  // }
+
   onCreate(): void{
     this.img = this.imgServ.url
-      const proye = new Proyectos(this.proyecto, this.descripcion, this.img);
+      const proye = new Proyectos(this.proyecto, this.descripcion, this.img, this.interceptServ.getUserId());
       this.proyectosService.save(proye).subscribe(data => {
       this.notif.noti();
     }, err => {

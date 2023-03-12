@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterPreloader } from '@angular/router';
+import { InvalidTokenError } from 'jwt-decode';
+import { AuthService } from './services/auth.service';
 import { TokenService } from './services/token.service';
+import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +13,24 @@ import { TokenService } from './services/token.service';
 export class AppComponent implements OnInit {
   title = "";
   isLogged = false;
-  loginUrl = this.router.url == "/login";
 
-  constructor(private router:Router, private tokenService: TokenService) { }
+  loggedIn: boolean;
+  buttonText: string;
+
+  constructor(private router:Router, private tokenService: TokenService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getToken()){
-      this.isLogged=true;
-    }else{
-      this.isLogged = false;
+    if(this.tokenService.getUserName() == "Diego"){
+      this.loggedIn = false;
+      this.buttonText = "Log in"
+    } else {
+      this.authService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
+      this.loggedIn = isAuthenticated;
+      this.buttonText = this.loggedIn ? 'Log out' : 'Log in';
+      });
     }
+    
+
       let resbarcont:HTMLElement = document.querySelector('.responsive-bar-content');
       let resbar:HTMLElement = document.querySelector('.responsive-bar');
       resbar.addEventListener("click", ()=>{
@@ -28,17 +39,21 @@ export class AppComponent implements OnInit {
   }
 
   onLogOut():void{
-    this.tokenService.logOut();
-    window.location.reload();
+    if (this.loggedIn) {
+      this.tokenService.logOut();
+      window.location.reload();
+    } else {
+      console.log("pepito clavo un clavito")
+    }
   }
 
-  // login(){
-  //     this.router.navigate(['/login']);
-  // }
+  login(){
+      this.router.navigate(['/login']);
+  }
 
-  // goHome(){
-  //     this.router.navigate(['/']);
-  // }
+  goHome(){
+      this.router.navigate(['/']);
+  }
   
   noti():any {
 

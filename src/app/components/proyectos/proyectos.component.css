@@ -119,6 +119,17 @@
     align-items: center;
     margin-bottom: 110px;
   }
+  .containerdetodo:empty {
+    display: none;
+  }
+  .subcontainerdetodo {
+    width: 100%;
+    display: inherit;
+    justify-content: inherit;
+    height: inherit;
+    align-items: inherit;
+    margin-bottom: 0px;
+  }
 
   @media screen and (max-width: 1000px) {
     .containerdetodo {
@@ -128,6 +139,14 @@
       align-content: center;
       width: 100%;
       align-self: center;
+    }
+    .subcontainerdetodo {
+      display: inherit;
+      flex-direction: inherit;
+      align-items: inherit;
+      align-content: inherit;
+      width: 100%;
+      align-self: inherit;
     }
     .portfolio_container {
      display: flex;

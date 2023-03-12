@@ -1,6 +1,6 @@
 <div class="exp">
   <h1>Experiencia laboral</h1>
-  <button type="button" class="newexp" id="newexp" *ngIf="isLogged && isAdmin"><i class="fa-regular fa-square-plus"></i></button>
+  <button type="button" class="newexp" id="newexp" *ngIf="isLogged"><i class="fa-regular fa-square-plus"></i></button>
 </div>
 
 <div class="lista">
@@ -12,8 +12,8 @@
     </div>
 
     <div class="delete_edit_container">
-      <li *ngIf="isLogged && isAdmin" class="lapiz"><button routerLink="/editexp/{{Experiencia.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
-      <li *ngIf="isLogged && isAdmin" class="tachito"><button (click)="delete(Experiencia.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
+      <li *ngIf="isLogged" class="lapiz"><button routerLink="/editexp/{{Experiencia.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
+      <li *ngIf="isLogged" class="tachito"><button (click)="delete(Experiencia.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
     </div>
   
 

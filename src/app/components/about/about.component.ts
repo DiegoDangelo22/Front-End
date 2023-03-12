@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Persona } from 'src/app/model/persona.model';
+import { Usuario } from 'src/app/model/usuario';
+import { AuthService } from 'src/app/services/auth.service';
 import { ImageService } from 'src/app/services/image.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
 import { PersonaService } from 'src/app/services/persona.service';
 import { TokenService } from 'src/app/services/token.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-about',
@@ -12,13 +16,24 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class AboutComponent implements OnInit {
   persona: Persona = null;
+  persona2: Persona[] = [];
+  nombre: string = '';
+  apellido: string = '';
+  profesion: string = '';
+  img: string = '';
+  descripcion: string = '';
+  usuarioActual: Usuario;
+  perso: Persona;
 
-  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService) {  }
+  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private interceptServ: InterceptorService, private usuarioService: UsuarioService, private authService: AuthService) {  }
   isLogged = false;
   isAdmin = false;
+  userId = this.interceptServ.getUserId();
 
   ngOnInit(): void {
-    this.cargarPersona();
+    this.authService.getAbout().subscribe(perso => {
+      this.persona2 = perso || []; // asegurarse de manejar el caso en que edu es null
+    });
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
@@ -31,10 +46,29 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  cargarPersona(){
-    this.persoServ.detail(1).subscribe(data => {
-      this.persona = data;
-    })
+  // cargarPersona(){
+  //   this.persoServ.detail(this.interceptServ.getUserId()).subscribe(data => {
+  //     this.persona = data;
+  //   })
+  // }
+
+  // cargarPersona(): void {
+  //   this.persoServ.lista().subscribe(
+  //     data =>{
+  //       this.persona2 = data;
+  //       console.log(this.persona2 + "pepe")
+  //     }
+  //   )
+  // }
+
+
+  mostrarPersona(persona: Persona): any {
+    if(persona && this.tokenService.getToken()){
+      const persoUser = this.persona2.find(perso => perso.usuario.id === 27);
+      return persoUser;
+    } else {
+      return true;
+    }
   }
 
   onUpdate():void{

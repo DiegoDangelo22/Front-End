@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proyectos } from 'src/app/model/proyectos';
 import { ImageService } from 'src/app/services/image.service';
+import { InterceptorService } from 'src/app/services/interceptor-service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -15,7 +16,7 @@ export class EditProyectosComponent implements OnInit {
   proyecto: string = '';
   descripcion: string = '';
   img: string = '';
-  constructor(private proyectosService: ProyectosService, private tokenService: TokenService, private activatedRoute: ActivatedRoute, private router: Router, public imgServ:ImageService) { }
+  constructor(private proyectosService: ProyectosService, private tokenService: TokenService, private activatedRoute: ActivatedRoute, private router: Router, public imgServ:ImageService, private interceptServ: InterceptorService) { }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
@@ -58,13 +59,13 @@ export class EditProyectosComponent implements OnInit {
     } else {
       this.proyectos.img = this.imgServ.url;
     }
-    const proyec = new Proyectos(this.proyecto, this.descripcion, this.proyectos.img)
+    const proyec = new Proyectos(this.proyecto, this.descripcion, this.proyectos.img, this.interceptServ.getUserId())
     this.proyectosService.update(id, proyec).subscribe(
       data => {
-        this.router.navigate(['/portfolio']);
+        this.router.navigate(['']);
       }, err => {
         alert("Error al modificar la información");
-        this.router.navigate(['/portfolio']);
+        this.router.navigate(['']);
       }
     )
   }

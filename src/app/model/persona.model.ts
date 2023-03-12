@@ -1,3 +1,5 @@
+import { Usuario } from "./usuario";
+
 export class Persona{
     id?: number;
     nombre: string;
@@ -5,12 +7,15 @@ export class Persona{
     descripcion: string;
     profesion: string;
     img: string;
+    usuario: Usuario;
+    usuarioId: number;
 
-    constructor(nombre: string, apellido: string, descripcion: string, profesion: string, img: string){
+    constructor(nombre: string, apellido: string, descripcion: string, profesion: string, img: string, usuarioId: number){
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
         this.profesion = profesion;
         this.img = img;
+        this.usuarioId = usuarioId;
     }
 }
