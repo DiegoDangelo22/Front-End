@@ -50,9 +50,9 @@
                 </div>
                 
                 <div class="name">
-                  <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="persona.nombre" required>
-                  <input type="text" class="form-control" id="apellido" name="apellido" [(ngModel)]="persona.apellido" required>
-                  <input id="profesion" name="profesion" [(ngModel)]="persona.profesion" required>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="persona.nombre" required>
+                  <input type="text" class="form-control" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="persona.apellido" required>
+                  <input id="profesion" name="profesion" placeholder="Profesión" [(ngModel)]="persona.profesion" required>
                   <div class="editpersoncont">
                     <button type="submit" class="editperson" *ngIf="isLogged"><i class="fa-regular fa-square-plus"></i> Actualizar</button>
                   </div>
