@@ -52,15 +52,17 @@ export class ProyectosComponent implements OnInit, AfterViewChecked, OnDestroy {
       if(this.proyectos.length > 0){
         // console.clear()
         let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
-        proyectosbtn.style.display = 'block'
+        proyectosbtn.style.display = 'block';
+      }
+      if(this.tokenService.getUserName() === "test") {
+        let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
+        proyectosbtn.style.display = 'none';
+        let proyectosh1:HTMLElement = document.querySelector("#proyectos-h1");
+        proyectosh1.style.fontSize = "40px";
       }
     } catch (error) {
       
     }
-    // let proyectosh1:HTMLElement = document.querySelector("#proyectos-h1");
-    // if(proyectosh1.style.width < '392px'){
-    //   proyectosh1.style.fontSize = "40px"
-    // }
   }
 
   ngOnDestroy(): void {
