@@ -26,18 +26,23 @@ export class HysComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarSkills();
+    if(this.tokenServ.getUserName() === "test"){
+      this.isAdmin = false;
+    } else {
+      this.isAdmin = true;
+    }
     if(this.tokenServ.getToken()){
       this.isLogged = true;
     } else {
       this.isLogged = false;
     }
-    if((this.tokenServ.getAuthorities()[0] && this.tokenServ.getAuthorities()[1])){
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
+    // if((this.tokenServ.getAuthorities()[0] && this.tokenServ.getAuthorities()[1])){
+    //   this.isAdmin = true;
+    // } else {
+    //   this.isAdmin = false;
+    // }
 
-    if(this.isAdmin == true) {
+    if(this.isLogged == true) {
       setTimeout(() => {
         var modalhys:HTMLElement = document.querySelector('.modalhys');
       var btnhys:HTMLElement = document.querySelector('.newhys');
@@ -46,6 +51,7 @@ export class HysComponent implements OnInit {
         window.onclick = function(event) {
           if (event.target == modalhys) {
             modalhys.style.display = "none";
+            // location.reload();
           }
         } 
       })
@@ -76,6 +82,7 @@ export class HysComponent implements OnInit {
     const skill = new Skill(this.name, this.percentage, this.interceptServ.getUserId());
     this.skillServ.save(skill).subscribe(
       data => {
+        this.cargarSkills();
         this.notif.noti();
       }, err => {
         alert("Falló al añadir la skill");

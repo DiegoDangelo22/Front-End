@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
     }
     
-    if(this.router.url == '/login' && this.tokenService.getUserName() == "Diego") {
+    if(this.router.url == '/login' && this.tokenService.getUserName() == "test") {
       
     } else {
       this.router.navigate(['/']);

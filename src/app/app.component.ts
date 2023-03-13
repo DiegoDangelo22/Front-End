@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   constructor(private router:Router, private tokenService: TokenService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getUserName() == "Diego"){
+    if(this.tokenService.getUserName() == "test"){
       this.loggedIn = false;
       this.buttonText = "Log in"
     } else {

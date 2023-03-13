@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
 import { Educacion } from 'src/app/model/educacion';
 import { Usuario } from 'src/app/model/usuario';
@@ -9,6 +9,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { InterceptorService } from 'src/app/services/interceptor-service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router, RouteReuseStrategy } from '@angular/router';
+import { tap, finalize, map } from 'rxjs';
 
 @Component({
   selector: 'app-educacion',
@@ -22,31 +24,36 @@ export class EducacionComponent implements OnInit {
   usuarioActual: Usuario;
   edu: Educacion;
 
-  constructor(private educacionService: EducacionService, private tokenService: TokenService, private notif:AppComponent, private http: HttpClient, private interceptServ: InterceptorService, private usuarioService: UsuarioService, private authService:AuthService) { }
+  constructor(private educacionService: EducacionService, private tokenService: TokenService, private notif:AppComponent, private http: HttpClient, private interceptServ: InterceptorService, private usuarioService: UsuarioService, private authService:AuthService, private cd: ChangeDetectorRef, private router: Router) { }
   isLogged = false;
   isAdmin = false;
+  loading: boolean;
 
   ngOnInit(): void {
     this.authService.getEducacion().subscribe(
       edu => {
         this.educacion = edu || [];
-        console.log(this.educacion)
+        // console.log(this.educacion)
       },
       error => {
         console.log('Error al obtener la información de educación:', error);
       }
     );
-    
+    if(this.tokenService.getUserName() === "test"){
+      this.isAdmin = false;
+    } else {
+      this.isAdmin = true;
+    }
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
       this.isLogged = false;
     }
-    if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
+    // if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
+    //   this.isAdmin = true;
+    // } else {
+    //   this.isAdmin = false;
+    // }
 
     if(this.isLogged == true) {
       setTimeout(() => {
@@ -65,19 +72,11 @@ export class EducacionComponent implements OnInit {
     
   }
 
-  // cargarEducacion(): void {
-  //   if(this.tokenService.getToken()){
-  //     this.educacionService.lista().subscribe(
-  //       data =>{
-  //         this.user = data;
-  //         console.log(this.user)
-  //       }
-  //     )
-  //   } else {
-  //     this.educacionService.detail(106).subscribe(data => {this.user = data;console.log(this.user)});
-  //   }
-    
-  // }
+  cargarEducacion(): void {
+    this.educacionService.lista().subscribe(edu => {
+      this.educacion = edu.filter(edu => edu.usuario.id === this.interceptServ.getUserId());
+    });
+  }
 
   // mostrarEducacion(educacion: Educacion): boolean {
   //   this.http.get(environment.URL + 'auth/user-id').subscribe(data => {
@@ -103,21 +102,26 @@ export class EducacionComponent implements OnInit {
 
   onCreate(): void {
     const educacion = new Educacion(this.nombreEdu, this.descripcionEdu, this.interceptServ.getUserId());
-    this.educacionService.save(educacion).subscribe(
+    this.loading = true;
+    this.educacionService.save(educacion).pipe(
+      tap(() => { this.loading = true; }),
+      finalize(() => { this.loading = false; })
+    ).subscribe(
       data => {
+        this.cargarEducacion();
         this.notif.noti();
       }, err => {
         alert("Falló");
       }
     )
-    
   }
+  
 
   borrar(id?: number){
     if(id != undefined){
       this.educacionService.delete(id).subscribe(
         data => {
-          // this.cargarEducacion();
+          this.cargarEducacion()
         }, err => {
           alert("No se pudo eliminar");
         }

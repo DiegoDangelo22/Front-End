@@ -194,6 +194,11 @@ body {
     font-size: 20px;
     border: 2px solid white;
     border-radius: 25%;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   a {
     text-decoration: none;

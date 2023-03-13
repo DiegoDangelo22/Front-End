@@ -78,7 +78,7 @@ export class AuthService {
     } else {
       return this.personaService.lista().pipe(
         map(persona => {
-          return persona.filter(perso => perso.usuario.id === 27);
+          return persona.filter(perso => perso.usuario.id === 1);
         })
       );
     }
@@ -94,7 +94,7 @@ export class AuthService {
     } else {
       return this.educacionService.lista().pipe(
         map(educaciones => {
-          return educaciones.filter(edu => edu.usuario.id === 27);
+          return educaciones.filter(edu => edu.usuario.id === 1);
         })
       );
     }
@@ -111,7 +111,7 @@ export class AuthService {
     } else {
       return this.experienciaService.lista().pipe(
         map(experiencias => {
-          return experiencias.filter(exp => exp.usuario.id === 27);
+          return experiencias.filter(exp => exp.usuario.id === 1);
         })
       );
     }

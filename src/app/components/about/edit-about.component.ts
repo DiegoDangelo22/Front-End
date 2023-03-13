@@ -7,6 +7,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { getStorage, Storage, ref, uploadBytes, list, getDownloadURL, uploadBytesResumable } from '@angular/fire/storage';
 import Cropper from 'cropperjs';
 import { InterceptorService } from 'src/app/services/interceptor-service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-about',
@@ -16,10 +17,20 @@ import { InterceptorService } from 'src/app/services/interceptor-service';
 export class EditAboutComponent implements OnInit {
   persona: Persona = null;
   url:string = "";
-  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage, private interceptServ: InterceptorService) {  }
+  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage, private interceptServ: InterceptorService, private authService: AuthService) {  }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.persoServ.detail(id).subscribe(data =>
+    {if(data.usuario.id == this.interceptServ.getUserId()){
+
+    } else {
+      this.router.navigate(["/login"])
+    }})
+    if(this.tokenService.getUserName() === "test" && this.router.url == "/editpersona/1"){
+      this.router.navigate(["/"])
+    }
     this.cargarPersona();
     if(this.tokenService.getToken()){
       this.isLogged = true;

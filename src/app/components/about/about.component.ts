@@ -34,16 +34,21 @@ export class AboutComponent implements OnInit {
     this.authService.getAbout().subscribe(perso => {
       this.persona2 = perso || []; // asegurarse de manejar el caso en que edu es null
     });
+    if(this.tokenService.getUserName() === "test"){
+      this.isAdmin = false;
+    } else {
+      this.isAdmin = true;
+    }
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
       this.isLogged = false;
     }
-    if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
-      this.isAdmin = true;
-    } else {
-      this.isAdmin = false;
-    }
+    // if((this.tokenService.getAuthorities()[0] && this.tokenService.getAuthorities()[1])){
+    //   this.isAdmin = true;
+    // } else {
+    //   this.isAdmin = false;
+    // }
   }
 
   // cargarPersona(){

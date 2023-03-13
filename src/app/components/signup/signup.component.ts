@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
   apellido: string = '';
   descripcion: string = '';
   profesion: string = '';
-  img: string = '';
+  img: string = '../../../assets/public/newuseravatar.png';
   usuarioActual: Usuario;
 
   constructor(private tokenService: TokenService, private authService: AuthService, private router: Router, private formBuilder: FormBuilder, private interceptServ: InterceptorService, private personaServ: PersonaService, private notif: AppComponent, private usuarioService: UsuarioService)
@@ -49,9 +49,11 @@ export class SignupComponent implements OnInit {
       this.roles = this.tokenService.getAuthorities();
     };
 
-    if(this.router.url == '/signup' && this.isLogged == true) {
+    if(this.router.url == '/signup' && this.tokenService.getUserName() == "test") {
+      
+    } else {
       this.router.navigate(['/']);
-    };
+    }
   }
 
   // obtenerUsuarioActual(): void {
@@ -70,9 +72,10 @@ export class SignupComponent implements OnInit {
         this.tokenService.setUserName(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        console.log("Datos del usuario registrado: ", data);
+        // console.log("Datos del usuario registrado: ", data);
         this.onCreate(() => {
           this.router.navigate(['/']);
+          window.location.reload();
         });
       },
       err => {
@@ -85,13 +88,13 @@ export class SignupComponent implements OnInit {
   }
   
   onCreate(callback:any): void {
-    console.log("Creando nueva persona...");
+    // console.log("Creando nueva persona...");
     const persona = new Persona(this.nombre, this.apellido, this.descripcion, this.profesion, this.img, this.interceptServ.getUserId());
-    console.log("Datos de la persona:", persona);
+    // console.log("Datos de la persona:", persona);
     this.personaServ.save(persona).subscribe(
       data => {
-        console.log("Persona creada exitosamente:", data);
-        this.notif.noti();
+        // console.log("Persona creada exitosamente:", data);
+        // this.notif.noti();
         callback(); // llamamos al callback una vez se completa la petición
       },
       err => {

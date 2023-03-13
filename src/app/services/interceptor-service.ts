@@ -15,7 +15,7 @@ export class InterceptorService {
       try {
         const token = this.tokenService.getToken();
           const decodedToken = jwtDecode(token) as any;
-          console.log(decodedToken)
+          // console.log(decodedToken)
           return decodedToken.userId;
     } catch (error:any) {
        return console.log(error);
@@ -46,7 +46,7 @@ export class InterceptorService {
         }),
         finalize(() => {
           const userId = this.getUserId();
-          console.log('UserId:', userId);
+          // console.log('UserId:', userId);
         })
       );
     }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode, { InvalidTokenError } from 'jwt-decode';
 import { catchError, Observable } from 'rxjs';
@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
     private usuarioService: UsuarioService,
     private educacionService: EducacionService,
     private experienciaService: ExperienciaService,
-    private interceptService: InterceptorService
+    private interceptService: InterceptorService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {

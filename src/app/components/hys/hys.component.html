@@ -1,6 +1,6 @@
 <div class="hys">
     <h1>Hard & Soft skills</h1>
-    <button type="button" class="newhys" id="newhys" *ngIf="isLogged"><i class="fa-regular fa-square-plus"></i></button>
+    <button *ngIf="isAdmin" type="button" class="newhys" id="newhys"><i class="fa-regular fa-square-plus"></i></button>
   </div>
 
     <div class="row">
@@ -17,9 +17,9 @@
         [animateSubtitle]="true"
 >
         </circle-progress>
-        <div *ngIf="isAdmin" class="btn">
-            <li *ngIf="isLogged"><button class="btn btn-light" routerLink="/editskill/{{Skill.id}}"><i class="fa-solid fa-pencil"></i></button></li>
-            <li *ngIf="isLogged"><button class="btn btn-danger" (click)="delete(Skill.id)"><i class="fa-solid fa-trash"></i></button></li>
+        <div class="btn">
+            <li><button *ngIf="isAdmin" class="btn btn-light" routerLink="/editskill/{{Skill.id}}"><i class="fa-solid fa-pencil"></i></button></li>
+            <li><button *ngIf="isAdmin" class="btn btn-danger" (click)="delete(Skill.id)"><i class="fa-solid fa-trash"></i></button></li>
         </div>
         <div class="subtitle">{{Skill.name}}</div>
         </div>

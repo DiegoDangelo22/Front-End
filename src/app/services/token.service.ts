@@ -22,10 +22,10 @@ export class TokenService {
 
   public getToken():any {
     if(!sessionStorage.getItem(TOKEN_KEY)){
-      window.sessionStorage.setItem(TOKEN_KEY, "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbjEyIiwidXNlcklkIjoyNywiaWF0IjoxNjc4NjU0MzI3LCJleHAiOjE2Nzg2OTAzMjd9.sEdIKQ0Gv_zRMAOb-il09l45GR7rOJmBA6GWjikOuNEOcTIoGF4Sml-gaUeJbfyUDyDB860AjOVcx90NJpx92w")
-      window.sessionStorage.setItem(USERNAME_KEY, "Diego")
+      window.sessionStorage.setItem(TOKEN_KEY, "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwidXNlcklkIjoxLCJpYXQiOjE2Nzg2ODkwNzEsImV4cCI6MzY3ODcyNTA3MX0.HtTWVp5Gqs0kOV2-fSX9FMilRlL_iFuZp_PEsSgKDmwJiCEfg7Bwg3VpJoGKIlfvejsRPJuLQrmeKrW4o_2aag")
+      window.sessionStorage.setItem(USERNAME_KEY, "test")
       // window.sessionStorage.setItem(USERID_KEY, "27");
-      window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify([{"authority":"ROLE_ADMIN"},{"authority":"ROLE_USER"}]))
+      window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify([{"authority":"ROLE_USER"}]))
       return sessionStorage.getItem(TOKEN_KEY);
     } else {
       return sessionStorage.getItem(TOKEN_KEY)!;
