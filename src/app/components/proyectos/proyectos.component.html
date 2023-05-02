@@ -1,26 +1,24 @@
 <div class="projects">
   <div class="container">
     <button type="button" id="add1" class="newproyecto" *ngIf="isAdmin" routerLink="/newproyecto"><i class="fa-regular fa-square-plus"></i></button>
-      <h1 id="proyectos-h1">Proyectos</h1>
+    <h1 id="proyectos-h1">Proyectos</h1>
     <button type="button" id="add2" class="newproyecto" *ngIf="isAdmin" routerLink="/newproyecto"><i class="fa-regular fa-square-plus"></i></button>
   </div>
-    
 </div>
-    <div class="containerdetodo" *ngFor="let Proyectos of proyectos">
-      <div class="subcontainerdetodo" *ngIf="mostrarProyectos(Proyectos)">      
-  <div class="portfolio_container">
-    <div class="portfolio_img">
-      <h2>{{Proyectos.proyecto}}</h2>
-      <img src="{{Proyectos.img}}" alt="">
-      <div class="btn" id="botones-proyecto">
-      <button type="button" class="editproyecto" routerLink="/editproyecto/{{Proyectos.id}}" *ngIf="isAdmin"><i class="fa-regular fa-square-plus"></i> Editar</button>
-      <button (click)="delete(Proyectos.id)" *ngIf="isAdmin"><i class="fa-solid fa-xmark"></i> Eliminar</button>
+<div class="containerdetodo" *ngFor="let Proyectos of proyectos">
+  <div class="subcontainerdetodo" *ngIf="mostrarProyectos(Proyectos)">      
+    <div class="portfolio_container">
+      <div class="portfolio_img">
+        <h2>{{Proyectos.proyecto}}</h2>
+        <img src="{{Proyectos.img}}" alt="">
+        <div class="btn" id="botones-proyecto">
+          <button type="button" class="editproyecto" routerLink="/editproyecto/{{Proyectos.id}}" *ngIf="isAdmin"><i class="fa-regular fa-square-plus"></i> Editar</button>
+          <button (click)="delete(Proyectos.id)" *ngIf="isAdmin"><i class="fa-solid fa-xmark"></i> Eliminar</button>
+        </div>
+      </div>
     </div>
+    <div class="portfolio_desc">
+      <p>{{Proyectos.descripcion}}</p>
     </div>
   </div>
-  <div class="portfolio_desc">
-    <p>{{Proyectos.descripcion}}</p>
-  </div>
 </div>
-</div>
-

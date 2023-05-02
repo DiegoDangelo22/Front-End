@@ -1,23 +1,17 @@
 <div class="modalexp" id="modal">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-  
-  
-  
-        <div *ngIf="expLab" class="container">
-          <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" class="content">
-              <div class="inputs">
-                  <label for="nombreExp">Lugar de trabajo</label>
-                  <input type="text" class="form-control" id="nombreExp" name="nombreExp" [(ngModel)]="expLab.nombreExp" required>
-      
-      
-                  <label for="descripcionExp">Descripción de la tarea</label>
-                  <input type="text" class="form-control" id="descripcionExp" name="descripcionExp" [(ngModel)]="expLab.descripcionExp" required>
-              </div>
-              <button class="btn">Actualizar experiencia</button>
-          </form>
-      </div>
+  <div class="modal-content">
+    <div class="modal-body">
+      <div *ngIf="expLab" class="container">
+        <form (ngSubmit)="onUpdate()" novalidate #f="ngForm" class="content">
+          <div class="inputs">
+            <label for="nombreExp">Lugar de trabajo</label>
+            <input type="text" class="form-control" id="nombreExp" name="nombreExp" [(ngModel)]="expLab.nombreExp" required>
+            <label for="descripcionExp">Descripción de la tarea</label>
+            <input type="text" class="form-control" id="descripcionExp" name="descripcionExp" [(ngModel)]="expLab.descripcionExp" required>
+          </div>
+          <button class="btn">Actualizar experiencia</button>
+        </form>
       </div>
     </div>
   </div>
+</div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Experiencia } from 'src/app/model/experiencia';
 import { ExperienciaService } from 'src/app/services/experiencia.service';
-import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-edit-experiencia',
@@ -15,10 +14,9 @@ export class EditExperienciaComponent implements OnInit {
   descripcionExp: string = '';
   isAdmin = false;
 
-  constructor(private expService: ExperienciaService, private tokenService: TokenService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private expService: ExperienciaService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-
     const id = this.activatedRoute.snapshot.params['id'];
     this.expService.detail(id).subscribe(data => {
       this.expLab = data;
@@ -37,5 +35,4 @@ export class EditExperienciaComponent implements OnInit {
       this.router.navigate(['']);
     })
   }
-
 }

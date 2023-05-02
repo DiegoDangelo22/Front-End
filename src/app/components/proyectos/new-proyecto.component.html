@@ -1,39 +1,29 @@
 <div class="modalproyecto" id="modal">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-  
-  
-  
-        <div class="container">
-          <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
-              <div class="inputs">
-                  <label class="label-nombre" for="proyecto">Nombre del proyecto</label>
-                  <input type="text" class="form-control" id="proyecto" name="proyecto" [(ngModel)]="proyecto" required>
-      
-      
-                  <label class="label-desc" for="descripcion">Descripción</label>
-                  <textarea cols="40" rows="12" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="descripcion" required></textarea>
-                  <button class="btn123">Agregar proyecto</button>
-              </div>
-              
-
-              <div class="img-container">
-                <label>Imagen</label>
-                <div class="file">
-                  <label class="label-img" for="img">
-                    Agregar imagen
-                  <input type="file" class="form-control" value="upload" id="img" name="img" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png">
-                  </label>
-                </div>
-               
-                <div class="imgserv-url">
-                  <img [src]="imgServ.url" width="150px">
-                </div>
-              </div>
-              <button class="btn123456">Agregar proyecto</button>
-          </form>
-      </div>
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="container">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
+          <div class="inputs">
+            <label class="label-nombre" for="proyecto">Nombre del proyecto</label>
+            <input type="text" class="form-control" id="proyecto" name="proyecto" [(ngModel)]="proyecto" required>
+            <label class="label-desc" for="descripcion">Descripción</label>
+            <textarea cols="40" rows="12" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="descripcion" required></textarea>
+            <button class="btn">Agregar proyecto</button>
+          </div>
+          <div class="img-container">
+            <label>Imagen</label>
+            <div class="file">
+              <label class="label-img" for="img">Agregar imagen
+                <input type="file" class="form-control" value="upload" id="img" name="img" (change)="uploadImage($event)" accept=".jpg, .jpeg, .png">
+              </label>
+            </div>
+            <div class="imgserv-url">
+              <img [src]="imgServ.url" width="150px">
+            </div>
+          </div>
+          <button class="btn2">Agregar proyecto</button>
+        </form>
       </div>
     </div>
   </div>
+</div>

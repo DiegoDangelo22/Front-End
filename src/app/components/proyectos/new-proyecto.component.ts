@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { Proyectos } from 'src/app/model/proyectos';
 import { ImageService } from 'src/app/services/image.service';
 import { ProyectosService } from 'src/app/services/proyectos.service';
 import { TokenService } from 'src/app/services/token.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { UsuarioService } from 'src/app/services/usuario.service';
 import { InterceptorService } from 'src/app/services/interceptor-service';
 import { Usuario } from 'src/app/model/usuario';
 
@@ -23,7 +21,7 @@ export class NewProyectoComponent implements OnInit {
   img: string = '';
   usuarioActual: Usuario;
   
-  constructor(private router:Router, private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private activatedRoute:ActivatedRoute, private http: HttpClient, private interceptServ: InterceptorService, private usuarioService: UsuarioService) { }
+  constructor(private proyectosService:ProyectosService, public imgServ:ImageService, private tokenService:TokenService, private notif:AppComponent, private http: HttpClient, private interceptServ: InterceptorService) { }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
@@ -48,37 +46,24 @@ export class NewProyectoComponent implements OnInit {
     });
   }
 
-  // obtenerUsuarioActual(): void {
-  //   this.usuarioService.getUsuarioById().subscribe(data => {
-  //     this.usuarioActual = data;
-  //   });
-  // }
-
   onCreate(): void{
     this.img = this.imgServ.url
-      const proye = new Proyectos(this.proyecto, this.descripcion, this.img, this.interceptServ.getUserId());
-      this.proyectosService.save(proye).subscribe(data => {
+    const proye = new Proyectos(this.proyecto, this.descripcion, this.img, this.interceptServ.getUserId());
+    this.proyectosService.save(proye).subscribe(data => {
       this.notif.noti();
     }, err => {
       alert(err.error.mensaje);
     })
-    
   }
 
   uploadImage($event:any){
-
-      this.http.get(environment.URL + 'proyectos/data').subscribe(data => {
-      let proyectodata:any = data;
-
-        const id = proyectodata;
-        let noombrreeeid = id;
-        const nombre = "proyecto_" + noombrreeeid;
-        this.imgServ.uploadImage($event, nombre)
-      
-      }, error => {
-        console.error(error);
-      });
-      
+    this.http.get(environment.URL + 'proyectos/data').subscribe(data => {
+      let proyectoData:any = data;
+      const id = proyectoData;
+      const nombre = "proyecto_" + id;
+      this.imgServ.uploadImage($event, nombre)
+    }, error => {
+      console.error(error);
+    });
   }
-
 }

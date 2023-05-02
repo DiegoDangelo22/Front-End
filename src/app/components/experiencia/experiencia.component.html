@@ -1,50 +1,37 @@
 <div class="exp">
   <h1>Experiencia laboral</h1>
-  <button *ngIf="isAdmin" type="button" class="newexp" id="newexp"><i class="fa-regular fa-square-plus"></i></button>
+  <button [hidden]="!isAdmin" type="button" class="newexp" id="newexp"><i class="fa-regular fa-square-plus"></i></button>
 </div>
 
 <div class="lista">
-<ul *ngFor="let Experiencia of exp">
-  <div class="nomdes">
-    <div class="name_desc_container">
-      <li class="expname"><h2>{{Experiencia.nombreExp}}</h2></li>
-      <li class="expdesc">{{Experiencia.descripcionExp}}</li>
+  <ul *ngFor="let Experiencia of exp">
+    <div class="nomdes">
+      <div class="name_desc_container">
+        <li class="expname"><h2>{{Experiencia.nombreExp}}</h2></li>
+        <li class="expdesc">{{Experiencia.descripcionExp}}</li>
+      </div>
+      <div class="delete_edit_container">
+        <li *ngIf="isAdmin" class="lapiz"><button routerLink="/editexp/{{Experiencia.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
+        <li *ngIf="isAdmin" class="tachito"><button (click)="delete(Experiencia.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
+      </div>
     </div>
-
-    <div class="delete_edit_container">
-      <li *ngIf="isAdmin" class="lapiz"><button routerLink="/editexp/{{Experiencia.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
-      <li *ngIf="isAdmin" class="tachito"><button (click)="delete(Experiencia.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
-    </div>
-  
-
-  </div>
-  
-</ul>
+  </ul>
 </div>
-
-
-
 
 <div class="modalexp" id="modal">
   <div class="modal-content">
-    
     <div class="modal-body">
-
-
-
       <div class="container">
         <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
-            <div class="inputs">
-                <label for="nombreExp">Lugar de trabajo</label>
-                <input type="text" class="form-control" id="nombreExp" name="nombreExp" [(ngModel)]="nombreExp" required>
-    
-    
-                <label for="descripcionExp">Descripción de la tarea</label>
-                <input type="text" class="form-control" id="descripcionExp" name="descripcionExp" [(ngModel)]="descripcionExp" required>
-            </div>
-            <button class="btn">Agregar experiencia</button>
+          <div class="inputs">
+            <label for="nombreExp">Lugar de trabajo</label>
+            <input type="text" class="form-control" id="nombreExp" name="nombreExp" [(ngModel)]="nombreExp" required>
+            <label for="descripcionExp">Descripción de la tarea</label>
+            <input type="text" class="form-control" id="descripcionExp" name="descripcionExp" [(ngModel)]="descripcionExp" required>
+          </div>
+          <button class="btn">Agregar experiencia</button>
         </form>
-    </div>
+      </div>
     </div>
   </div>
 </div>

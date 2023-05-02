@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { LoginUsuario } from 'src/app/model/login-usuario';
-import { NuevoUsuario } from 'src/app/model/nuevo-usuario';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
   roles: string[] = [];
   errMsj!: string;
   formLogin: FormGroup;
-  isAdmin = false;
 
   constructor(private tokenService: TokenService, private authService: AuthService, private router: Router, private formBuilder: FormBuilder)
    {
@@ -48,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void{
-    this.loginUsuario = new LoginUsuario(this.nombreUsuario, this.password); 
+    this.loginUsuario = new LoginUsuario(this.formLogin.value.nombreUsuario, this.formLogin.value.password); 
     this.authService.login(this.loginUsuario).subscribe(data =>{
         this.isLogged = true;
         this.isLogginFail = false;
@@ -68,13 +66,4 @@ export class LoginComponent implements OnInit {
         }
       })
   }
-
-  get NombreUsuario() {
-    return this.formLogin.get('nombreUsuario');
-  }
-
-  get Password() {
-    return this.formLogin.get('password');
-  }
-
 }

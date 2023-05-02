@@ -1,25 +1,23 @@
 <div id="row" *ngFor="let persona of persona2">
-    
-<div >
-
-<div class="banner"></div>
-<div class="about_0">
-  <div class="about_1">
-    <div class="profile_pic">
-        <img src="{{persona.img}}" alt="">
-    </div>
-    <div class="name">
-      <p id="nombre">{{persona.nombre}} {{persona.apellido}}</p>
-      <p id="profesion">{{persona.profesion}}</p>
-      <div>
-        <button type="button" class="editperson" routerLink="/editpersona/{{persona.id}}" *ngIf="isAdmin"><i class="fa-regular fa-square-plus"></i> Editar persona</button>
+  <div>
+    <div class="banner"></div>
+    <div class="about_0">
+      <div class="about_1">
+        <div class="profile_pic">
+          <img src="{{persona.img}}" alt="">
+        </div>
+        <div class="name">
+          <p id="nombre">{{persona.nombre}} {{persona.apellido}}</p>
+          <p id="profesion">{{persona.profesion}}</p>
+          <div>
+            <button type="button" class="editperson" routerLink="/editpersona/{{persona.id}}" *ngIf="isAdmin"><i class="fa-regular fa-square-plus"></i> Editar persona</button>
+          </div>
+        </div>
+      </div>
+      <div class="about_2">
+        <h2>Acerca de</h2>
+        <textarea disabled cols="40" rows="8" class="form-control" id="descripcion" name="descripcion">{{persona.descripcion}}</textarea>
       </div>
     </div>
   </div>
-  <div class="about_2">
-    <h2>Acerca de</h2>
-    <textarea disabled cols="40" rows="8" class="form-control" id="descripcion" name="descripcion">{{persona.descripcion}}</textarea>
-  </div>
-</div>
-</div>
 </div>

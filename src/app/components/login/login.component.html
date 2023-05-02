@@ -1,43 +1,28 @@
-<!-- <app-header></app-header> -->
-
 <body>
   <section class="wrapper active">
     <div class="form login">
       <header>Login</header>
-      <form [formGroup]="formLogin" action="#" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
-        <input formControlName="nombreUsuario" type="text" placeholder="Ingrese su nombre de usuario" [(ngModel)]="nombreUsuario" required />
-        
-        <input formControlName="password" type="password" placeholder="Ingrese su contraseña" [(ngModel)]="password" required />
-        
-        
-        <input type="submit" value="Login" />
+      <form [formGroup]="formLogin" (ngSubmit)="onLogin()" novalidate>
+        <input formControlName="nombreUsuario" type="text" placeholder="Ingrese su nombre de usuario" required>
+        <input formControlName="password" type="password" placeholder="Ingrese su contraseña" required>
+        <input type="submit" value="Login">
         <div class="login-errs">
-          <p>{{errMsj}}</p>
+          <p>{{ errMsj }}</p>
         </div>
-        
-       </form>
+      </form>
     </div>
-    
-    
-    
-    
-    
 
     <div class="form signup">
       <header routerLink="/signup">Signup</header>
       <form>
-        <input type="text" placeholder="Ingrese su nombre de usuario" required />
-        
-        <input type="password" placeholder="Ingrese su contraseña"  required />
-        
+        <input type="text" placeholder="Ingrese su nombre de usuario" required>
+        <input type="password" placeholder="Ingrese su contraseña" required>
         <div class="checkbox">
-          <input type="checkbox" id="signupCheck"/>
+          <input type="checkbox" id="signupCheck">
           <label for="signupCheck">I accept all terms & conditions.</label>
         </div>
-        <input type="submit" value="Signup" />
-        
+        <input type="submit" value="Signup">
       </form>
-      
     </div>
   </section>
 </body>

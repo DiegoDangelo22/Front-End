@@ -1,6 +1,5 @@
-.projects {
+  .projects {
     display: flex;
-    /* min-width: 397px; */
     box-sizing: border-box;
     align-items: center;
     justify-content: center;
@@ -12,10 +11,7 @@
     background: linear-gradient(to left, #ff6a00, #ee0979);
     margin: 110px 0 110px 0;
   }
-
   .container {
-    /* width: min-content; */
-    /* min-width: min-content; */
     display: flex;
     align-items: center;
   }
@@ -50,22 +46,20 @@
     display: none;
   }
   #add1 {
-
     float: left;
-  height: fit-content;
-  font-size: 30px;
-  background: transparent;
-  border: transparent;
-  color: #fff;
+    height: fit-content;
+    font-size: 30px;
+    background: transparent;
+    border: transparent;
+    color: #fff;
   }
   #add2 {
-
     float: right;
-  height: fit-content;
-  font-size: 30px;
-  background: transparent;
-  border: transparent;
-  color: #fff;
+    height: fit-content;
+    font-size: 30px;
+    background: transparent;
+    border: transparent;
+    color: #fff;
   }
   .btn > button {
     vertical-align: middle;

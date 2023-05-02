@@ -20,13 +20,6 @@ export class EditProyectosComponent implements OnInit {
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
-    // const id = this.activatedRoute.snapshot.params['id'];
-    // this.proyectosService.detail(id).subscribe(data => {
-    //   this.proyectos = data;
-    // }, err => {
-    //   alert("Error al modificar proyecto");
-    //   this.router.navigate(['']);
-    // })
     this.cargarProyectos();
     if(this.tokenService.getToken()){
       this.isLogged = true;
@@ -38,8 +31,6 @@ export class EditProyectosComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-
-    
   }
   
   cargarProyectos(){
@@ -74,5 +65,4 @@ export class EditProyectosComponent implements OnInit {
     const nombre = "proyecto_";
     this.imgServ.uploadImage($event, nombre)
   }
-
 }

@@ -1,47 +1,37 @@
-    <div class="edu">
-      <h1>Educación</h1>
-      <button *ngIf="isAdmin" type="button" class="newedu" id="newedu"><i class="fa-regular fa-square-plus"></i></button>
+<div class="edu">
+  <h1>Educación</h1>
+  <button [hidden]="!isAdmin" type="button" class="newedu" id="newedu"><i class="fa-regular fa-square-plus"></i></button>
+</div>
+
+<div class="lista">
+  <ul *ngFor="let educacion2 of educacion">
+    <div class="nomdes">
+      <div class="name_desc_container">
+        <li class="eduname"><h2>{{educacion2.nombreEdu}}</h2></li>
+        <li class="edudesc">{{educacion2.descripcionEdu}}</li>
+      </div>
+      <div class="delete_edit_container">
+        <li *ngIf="isAdmin" class="lapiz"><button routerLink="/editedu/{{educacion2.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
+        <li *ngIf="isAdmin" class="tachito"><button (click)="borrar(educacion2.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
+      </div>
     </div>
+  </ul>
+</div>
 
-  <div class="lista">
-    <ul *ngFor="let educacion2 of educacion">
-      <div class="nomdes">
-        <div class="name_desc_container">
-          <li class="eduname"><h2>{{educacion2.nombreEdu}}</h2></li>
-          <li class="edudesc">{{educacion2.descripcionEdu}}</li>
-        </div>
-
-        <div class="delete_edit_container">
-          <li *ngIf="isAdmin" class="lapiz"><button routerLink="/editedu/{{educacion2.id}}" class="tdbtn"><i class="fa-solid fa-pencil"></i></button></li>
-          <li *ngIf="isAdmin" class="tachito"><button (click)="borrar(educacion2.id)" class="tdbtn"><i class="fa-solid fa-trash"></i></button></li>
-        </div>
-      
-
-      </div>
-      
-    </ul>
-  </div>
-
-  <div class="modaledu" id="modal">
-    <div class="modal-content">
-      
-      <div class="modal-body">
-  
-  
-  
-        <div class="container">
-          <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
-              <div class="inputs">
-                  <label for="nombreEdu">Educación</label>
-                  <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="nombreEdu" required>
-      
-      
-                  <label for="descripcionEdu">Descripción</label>
-                  <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="descripcionEdu" required>
-              </div>
-              <button class="btn">Agregar educación</button>
-          </form>
-      </div>
+<div class="modaledu" id="modal">
+  <div class="modal-content">
+    <div class="modal-body">
+      <div class="container">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm" class="content">
+          <div class="inputs">
+            <label for="nombreEdu">Educación</label>
+            <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="nombreEdu" required>
+            <label for="descripcionEdu">Descripción</label>
+            <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="descripcionEdu" required>
+          </div>
+          <button class="btn">Agregar educación</button>
+        </form>
       </div>
     </div>
   </div>
+</div>

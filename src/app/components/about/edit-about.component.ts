@@ -1,13 +1,12 @@
-import { Component, OnInit, AfterViewInit, ViewChild, Input, ElementRef, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Persona } from 'src/app/model/persona.model';
 import { ImageService } from 'src/app/services/image.service';
 import { PersonaService } from 'src/app/services/persona.service';
 import { TokenService } from 'src/app/services/token.service';
-import { getStorage, Storage, ref, uploadBytes, list, getDownloadURL, uploadBytesResumable } from '@angular/fire/storage';
+import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage';
 import Cropper from 'cropperjs';
 import { InterceptorService } from 'src/app/services/interceptor-service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-about',
@@ -17,17 +16,18 @@ import { AuthService } from 'src/app/services/auth.service';
 export class EditAboutComponent implements OnInit {
   persona: Persona = null;
   url:string = "";
-  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage, private interceptServ: InterceptorService, private authService: AuthService) {  }
+  constructor(public persoServ: PersonaService, private tokenService: TokenService, private activatedRoute:ActivatedRoute, private router:Router, public imgServ:ImageService, private storage:Storage, private interceptServ: InterceptorService) {  }
   isLogged = false;
   isAdmin = false;
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.persoServ.detail(id).subscribe(data =>
-    {if(data.usuario.id == this.interceptServ.getUserId()){
+    this.persoServ.detail(id).subscribe(data => {
+      if(data.usuario.id == this.interceptServ.getUserId()) {
 
-    } else {
-      this.router.navigate(["/login"])
-    }})
+      } else {
+        this.router.navigate(["/login"])
+      }
+    })
     if(this.tokenService.getUserName() === "test" && this.router.url == "/editpersona/1"){
       this.router.navigate(["/"])
     }
@@ -42,27 +42,14 @@ export class EditAboutComponent implements OnInit {
     } else {
       this.isAdmin = false;
     }
-
-    // if(this.router.url == '/editpersona/1' && this.isAdmin == false) {
-    //   this.router.navigate(['/login']);
-    // }
-
-
-   
   }
-    
 
   onUpdate():void{
     const id = this.activatedRoute.snapshot.params['id'];
-    // if(this.imgServ.url === ""){
-    //   this.persona.img;
-    // } else if (this.imgServ.url !== "") {
-    //   this.persona.img = this.imgServ.url;
-    // }
     if (this.url !== "") {
       this.persona.img = this.url;
     }
-    
+
     this.persoServ.update(id, this.persona).subscribe(
       data => {
         this.router.navigate(['/']);
@@ -80,23 +67,16 @@ export class EditAboutComponent implements OnInit {
     })
   }
 
-  
-
   uploadImage($event:any){
-    
     const id = this.activatedRoute.snapshot.params['id'];
     const name = "perfil_" + id;
-
     const file = $event.target.files[0]
-
-    
-      const imgRef = ref(this.storage, `img/` + name)
+    const imgRef = ref(this.storage, `img/` + name)
       
-      uploadBytes(imgRef, file)
-    // .then(response => {this.getImages()})
-    .then(async () => {let asd = await getDownloadURL(imgRef)
-    this.url = asd;
-    let image:any = document.querySelector("#koog");
+    uploadBytes(imgRef, file)
+    .then(async () => {let data = await getDownloadURL(imgRef)
+    this.url = data;
+    let image:any = document.querySelector("#input");
     image.src = this.url;
     let cropper = new Cropper(image, {
       aspectRatio: 0,
@@ -117,20 +97,15 @@ export class EditAboutComponent implements OnInit {
   document.querySelector("#cropImgBtn").addEventListener('click', ()=>{
     let croppedImage = cropper.getCroppedCanvas().toDataURL("image/png");
     let output:any = document.querySelector("#output");
-    let oo:any = document.querySelector("#myimg");
-    let momo:any = document.querySelector("#momo");
+    let myImg:any = document.querySelector("#myimg");
+    let newImg:any = document.querySelector("#newimg");
   
     output.src = croppedImage;
     this.url = croppedImage;
-    console.log(this.url)
-    oo.src = croppedImage;
-    momo.src = croppedImage;
-    
+    myImg.src = croppedImage;
+    newImg.src = croppedImage;
   })
-
-
     console.log("La url es: " + this.url)
-    
   })
     .catch(error => console.log(error))
     
@@ -138,29 +113,13 @@ export class EditAboutComponent implements OnInit {
     imgvieja.style.opacity = '0'
     
 
-    var modalPP:HTMLElement = document.querySelector('.modalPP');
+    var modal:HTMLElement = document.querySelector('.modal');
 
-    modalPP.style.display = "flex";
+    modal.style.display = "flex";
     window.onclick = function(event) {
-      if (event.target == modalPP) {
-        modalPP.style.display = "none";
+      if (event.target == modal) {
+        modal.style.display = "none";
       }
-    } 
-
-
-
-
-
-        
-        
-    
-
-        
-        
-        
+    }
   }
-
-  
-
-  
 }
