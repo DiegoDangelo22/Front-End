@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot } from '@angular/router';
-import { InvalidTokenError } from 'jwt-decode';
-import { BehaviorSubject, catchError, map, Observable, of, tap } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Educacion } from '../model/educacion';
 import { Experiencia } from '../model/experiencia';
@@ -10,7 +8,6 @@ import { JwtDto } from '../model/jwt-dto';
 import { LoginUsuario } from '../model/login-usuario';
 import { NuevoUsuario } from '../model/nuevo-usuario';
 import { Persona } from '../model/persona.model';
-import { Usuario } from '../model/usuario';
 import { EducacionService } from './educacion.service';
 import { ExperienciaService } from './experiencia.service';
 import { InterceptorService } from './interceptor-service';
@@ -22,50 +19,16 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
   URL = environment.URL + 'auth/';
-  persona2: Persona[] = [];
-  persona: Persona = null;
   isLogged = false;
 
-  private isLogged2 = new BehaviorSubject<boolean>(this.tokenService.getToken() !== null);
-  isAuthenticated$: Observable<boolean> = this.isLogged2.asObservable();
-
-  private isAuthenticatedSubject = new BehaviorSubject<boolean>(this.tokenService.getToken() !== null);
-  isAuthenticated2$ = this.isAuthenticatedSubject.asObservable();
-
-  get isAuthenticated2(): Observable<boolean> {
-    return this.isAuthenticated2$;
-  }
-
-  checkIsAuthenticated() {
-    try {
-      this.isAuthenticatedSubject.next(this.tokenService.getToken() !== null);
-    } catch (error) {
-      if (error instanceof InvalidTokenError) {
-        // Manejar el error de token inválido
-        console.log("Token inválido");
-        this.isAuthenticatedSubject.next(false);
-      } else {
-        // Reenviar el error
-        throw error;
-      }
-    }
-  }
-  
-
-  constructor(private httpClient: HttpClient, private tokenService: TokenService, public persoServ: PersonaService, public interceptServ:InterceptorService, public educacionService:EducacionService, public experienciaService:ExperienciaService, public personaService:PersonaService) { }
-
+  constructor(private httpClient: HttpClient, private tokenService: TokenService, public interceptServ:InterceptorService, public educacionService:EducacionService, public experienciaService:ExperienciaService, public personaService:PersonaService) { }
 
   isAuthenticated(): boolean {
-    
     if(this.tokenService.getToken() !== undefined || this.tokenService.getToken() !== null) {
       return this.isLogged = true;
     } else {
       return this.isLogged = false;
     }
-  }
-
-  hasPermissions(persona: Persona): boolean {
-    return persona.usuario.id === this.interceptServ.getUserId();
   }
 
   getAbout(): Observable<Persona[]> {
@@ -100,7 +63,6 @@ export class AuthService {
     }
   }
 
-
   getExperiencia(): Observable<Experiencia[]> {
     if (this.isAuthenticated()) {
       return this.experienciaService.lista().pipe(
@@ -116,15 +78,9 @@ export class AuthService {
       );
     }
   }
-  
 
  public nuevo(nuevoUsuario: NuevoUsuario): Observable<any>{
-   return this.httpClient.post<JwtDto>(this.URL + 'nuevo', nuevoUsuario).pipe(
-    tap((res: JwtDto) => {
-      console.log(res); // agregar esta línea para ver la respuesta del backend
-
-    }
-  ));
+   return this.httpClient.post<JwtDto>(this.URL + 'nuevo', nuevoUsuario)
  }
 
  public login(loginUsuario: LoginUsuario): Observable<JwtDto>{

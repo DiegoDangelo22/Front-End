@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
 import { NewProyectoComponent } from './components/proyectos/new-proyecto.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { GuardGuard } from './services/guard.guard';
 
 const routes: Routes = [
                         {path:'', component: HomeComponent},
@@ -18,7 +17,7 @@ const routes: Routes = [
                         {path:'editexp/:id', component: EditExperienciaComponent},
                         {path:'editedu/:id', component: EditEducacionComponent},
                         {path:'editskill/:id', component: EditHysComponent},
-                        {path:'editpersona/:id', component: EditAboutComponent, canActivateChild: [GuardGuard]},
+                        {path:'editpersona/:id', component: EditAboutComponent},
                         {path:'editproyecto/:id', component: EditProyectosComponent},
                         {path:'newproyecto', component: NewProyectoComponent}];
 

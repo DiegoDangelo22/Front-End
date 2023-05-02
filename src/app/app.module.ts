@@ -9,7 +9,6 @@ import { interceptorProvider } from './services/interceptor-service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { HeaderComponent } from './components/header/header.component';
 import { ExperienciaComponent } from './components/experiencia/experiencia.component';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
 import { EducacionComponent } from './components/educacion/educacion.component';
@@ -32,7 +31,6 @@ import { NewProyectoComponent } from './components/proyectos/new-proyecto.compon
     AppComponent,
     LoginComponent,
     HomeComponent,
-    HeaderComponent,
     ExperienciaComponent,
     EditExperienciaComponent,
     EducacionComponent,

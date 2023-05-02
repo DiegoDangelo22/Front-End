@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
-// const USERID_KEY = 'AuthUserId';
 const AUTHORITIES_KEY = 'AuthAuthorities';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class TokenService {
 
   constructor() { }
 
-  public setToken(token: string): void {
+  public setToken(token: string):void {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
@@ -24,15 +23,14 @@ export class TokenService {
     if(!sessionStorage.getItem(TOKEN_KEY)){
       window.sessionStorage.setItem(TOKEN_KEY, "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZXN0IiwidXNlcklkIjoxLCJpYXQiOjE2Nzg2ODkwNzEsImV4cCI6MzY3ODcyNTA3MX0.HtTWVp5Gqs0kOV2-fSX9FMilRlL_iFuZp_PEsSgKDmwJiCEfg7Bwg3VpJoGKIlfvejsRPJuLQrmeKrW4o_2aag")
       window.sessionStorage.setItem(USERNAME_KEY, "test")
-      // window.sessionStorage.setItem(USERID_KEY, "27");
       window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify([{"authority":"ROLE_USER"}]))
       return sessionStorage.getItem(TOKEN_KEY);
     } else {
       return sessionStorage.getItem(TOKEN_KEY)!;
-  }
+    }
   }
 
-  public setUserName(userName: string): void{
+  public setUserName(userName: string):void {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, userName);
   }
@@ -41,12 +39,12 @@ export class TokenService {
     return sessionStorage.getItem(USERNAME_KEY)!;
   }
 
-  public setAuthorities(authorities: string[]):void{
+  public setAuthorities(authorities: string[]):void {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 
-  public getAuthorities(): string[]{
+  public getAuthorities():string[] {
     this.roles = [];
     if(sessionStorage.getItem(AUTHORITIES_KEY)){
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach((authority:any) => {
