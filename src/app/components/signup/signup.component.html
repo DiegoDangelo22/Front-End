@@ -1,5 +1,3 @@
-<!-- <app-header></app-header> -->
-
 <body>
   <section class="wrapper">
     <div class="form login">
@@ -10,14 +8,8 @@
     <div class="form signup">
       <header>Signup</header>
       <form [formGroup]="formSignup" action="#" #f="ngForm" (ngSubmit)="onSignup()" novalidate>
-        <input formControlName="nombreUsuario" type="text" placeholder="Ingrese su nombre de usuario" [(ngModel)]="nombreUsuario"  required />
-        
-        <input formControlName="password" type="password" placeholder="Ingrese su contraseña" [(ngModel)]="password"  required />
-        
-        <!-- <div class="checkbox">
-          <input type="checkbox" id="signupCheck"/>
-          <label for="signupCheck">I accept all terms & conditions.</label>
-        </div> -->
+        <input formControlName="nombreUsuario" type="text" placeholder="Ingrese su nombre de usuario" required/>
+        <input formControlName="password" type="password" placeholder="Ingrese su contraseña" required/>
         <input type="submit" value="Signup" />
         <div class="signup-errs">
             <p>{{errMsj}}</p>

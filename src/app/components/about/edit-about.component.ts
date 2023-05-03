@@ -64,6 +64,10 @@ export class EditAboutComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params['id'];
     this.persoServ.detail(id).subscribe(data => {
       this.persona = data;
+      this.persona.nombre = "";
+      this.persona.apellido = "";
+      this.persona.profesion = "";
+      this.persona.descripcion = "";
     })
   }
 

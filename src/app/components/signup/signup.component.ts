@@ -25,10 +25,10 @@ export class SignupComponent implements OnInit {
   roles: string[] = [];
   errMsj!: string;
   formSignup: FormGroup;
-  nombre: string = '';
-  apellido: string = '';
+  nombre: string = 'Nombre';
+  apellido: string = 'Apellido';
   descripcion: string = '';
-  profesion: string = '';
+  profesion: string = 'Profesión';
   img: string = '../../../assets/public/newuseravatar.png';
   usuarioActual: Usuario;
 
@@ -56,14 +56,8 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  // obtenerUsuarioActual(): void {
-  //   this.usuarioService.getUsuarioById().subscribe(data => {
-  //     this.usuarioActual = data;
-  //   });
-  // }  
-
   onSignup(): void {
-    this.nuevoUsuario = new NuevoUsuario(this.nombreUsuario, this.password);
+    this.nuevoUsuario = new NuevoUsuario(this.formSignup.value.nombreUsuario, this.formSignup.value.password);
     this.authService.nuevo(this.nuevoUsuario).subscribe(
       data => {
         this.isLogged = true;
@@ -72,7 +66,6 @@ export class SignupComponent implements OnInit {
         this.tokenService.setUserName(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        // console.log("Datos del usuario registrado: ", data);
         this.onCreate(() => {
           this.router.navigate(['/']);
           window.location.reload();
@@ -88,24 +81,16 @@ export class SignupComponent implements OnInit {
   }
   
   onCreate(callback:any): void {
-    // console.log("Creando nueva persona...");
     const persona = new Persona(this.nombre, this.apellido, this.descripcion, this.profesion, this.img, this.interceptServ.getUserId());
-    // console.log("Datos de la persona:", persona);
     this.personaServ.save(persona).subscribe(
       data => {
-        // console.log("Persona creada exitosamente:", data);
-        // this.notif.noti();
-        callback(); // llamamos al callback una vez se completa la petición
+        callback();
       },
       err => {
         console.error("Error al crear la persona:", err);
-        alert(err.error.mensaje);
-        callback(); // llamamos al callback en caso de error
       }
     );
   }
-
-  
 
   get NombreUsuario() {
     return this.formSignup.get('nombreUsuario');

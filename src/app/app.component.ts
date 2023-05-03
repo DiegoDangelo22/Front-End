@@ -1,41 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterPreloader } from '@angular/router';
-import { InvalidTokenError } from 'jwt-decode';
-import { AuthService } from './services/auth.service';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenService } from './services/token.service';
-import { UsuarioService } from './services/usuario.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentChecked {
   title = "";
-  isLogged = false;
+  loggedIn: boolean = false;
 
-  loggedIn: boolean;
-  buttonText: string;
-
-  constructor(private router:Router, private tokenService: TokenService, private authService: AuthService) { }
+  constructor(private router:Router, private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    if(this.tokenService.getUserName() == "test"){
-      this.loggedIn = false;
-      this.buttonText = "Log in"
-    } else {
-      this.authService.isAuthenticated$.subscribe((isAuthenticated: boolean) => {
-      this.loggedIn = isAuthenticated;
-      this.buttonText = this.loggedIn ? 'Log out' : 'Log in';
-      });
-    }
-    
-
       let resbarcont:HTMLElement = document.querySelector('.responsive-bar-content');
       let resbar:HTMLElement = document.querySelector('.responsive-bar');
       resbar.addEventListener("click", ()=>{
       resbarcont.classList.toggle('responsive-bar-content-toggleada');
-      }, {passive:true, once:false});
+      }, {passive:true, once:false});  
+  }
+
+  ngAfterContentChecked(): void {
+    if(this.tokenService.getUserName() == "test"){
+      this.loggedIn = false;
+    } else {
+      this.loggedIn = true;
+    }
   }
 
   onLogOut():void{
@@ -43,7 +34,7 @@ export class AppComponent implements OnInit {
       this.tokenService.logOut();
       window.location.reload();
     } else {
-      console.log("pepito clavo un clavito")
+      
     }
   }
 
@@ -71,7 +62,7 @@ export class AppComponent implements OnInit {
     
       timer1 = setTimeout(() => {
         toast.classList.remove("active");
-      }, 5000); //1s = 1000 milliseconds
+      }, 5000);
     
       timer2 = setTimeout(() => {
         progress.classList.remove("active");
@@ -87,7 +78,5 @@ export class AppComponent implements OnInit {
         clearTimeout(timer1);
         clearTimeout(timer2);
       });
-    
   }
-
 }
