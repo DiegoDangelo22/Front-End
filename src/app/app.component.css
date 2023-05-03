@@ -276,17 +276,6 @@ body {
     border-radius: 1%;
     z-index: 50;
   }
-  .twitter {
-    box-sizing: border-box;
-    justify-self: center;
-    align-self: center;
-    width: 60px;
-    height: 60px;
-  }
-  #twitter {
-    width: 40px;
-    margin: 10px;
-  }
   .github {
     box-sizing: border-box;
     justify-self: center;
