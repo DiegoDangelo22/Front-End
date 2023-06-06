@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: '803794689215',
   },
   production: true,
-  URL: 'https://back-end-production-9f80.up.railway.app/'
+  URL: 'https://glitch.com/~portfolio-backend-argprog/'
 };
