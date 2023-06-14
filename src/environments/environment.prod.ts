@@ -9,5 +9,5 @@ export const environment = {
     messagingSenderId: '803794689215',
   },
   production: true,
-  URL: 'https://glitch.com/~portfolio-backend-argprog/'
+  URL: 'https://odoo.tuttipack.top:9080/'
 };
