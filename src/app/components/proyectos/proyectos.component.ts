@@ -36,12 +36,12 @@ export class ProyectosComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     try {
       if(this.proyectos.length > 0){
-        let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
-        proyectosbtn.style.display = 'block';
+        let proyectosbtn = document.querySelectorAll("#botones-proyecto");
+        proyectosbtn.forEach((e:any)=>e.style.display = 'block') ;
       }
       if(this.tokenService.getUserName() === "test") {
-        let proyectosbtn:HTMLElement = document.getElementById("botones-proyecto");
-        proyectosbtn.style.display = 'none';
+        let proyectosbtn:any = document.querySelectorAll("#botones-proyecto");
+        proyectosbtn.forEach((e:any)=>e.style.display = 'none') ;
         let proyectosh1:HTMLElement = document.querySelector("#proyectos-h1");
         proyectosh1.style.fontSize = "40px";
       }
